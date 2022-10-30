@@ -13,3 +13,7 @@
     </div><!-- /.col -->
   </div><!-- /.row -->  
 @endsection
+
+@section('content')
+    
+@endsection

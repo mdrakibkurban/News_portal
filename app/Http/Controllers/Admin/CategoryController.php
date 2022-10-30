@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Queue\Console\RetryCommand;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -14,7 +17,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $data['categories'] = Category::with('user')->latest()->get();
+        return view('admin.category.index',$data);
     }
 
     /**
@@ -24,7 +28,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.category.create');
     }
 
     /**
@@ -35,7 +39,22 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+            $request->validate([
+                'name'=>'required|string|unique:categories'
+            ]);
+
+           try {
+            $category = new Category();
+            $category->user_id = Auth::id();
+            $category->name = $request->name;
+            $category->status = $request->status;
+            $category->save();
+            flash('Category Create successfully')->success();
+            return redirect()->route('admin.categories.index');
+           } catch (\Throwable $th) {
+             flash($th->getMessage())->error();
+           }
     }
 
     /**
@@ -57,7 +76,13 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+        if(!$category){
+            flash('data not found')->error();
+            return redirect()->back();
+        }
+        $data['category'] = $category;
+        return view('admin.category.edit',$data);
     }
 
     /**
@@ -69,7 +94,26 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name'=>'required|string|unique:categories,name,'.$id
+        ]);
+
+        $category = Category::find($id);
+        if(!$category){
+            flash('data not found')->error();
+            return redirect()->back();
+        }
+
+        try {
+            $category->user_id = Auth::id();
+            $category->name = $request->name;
+            $category->status = $request->status;
+            $category->save();
+            flash('Category update successfully')->success();
+            return redirect()->route('admin.categories.index');
+           } catch (\Throwable $th) {
+             flash($th->getMessage())->error();
+           }
     }
 
     /**
@@ -80,6 +124,31 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $category = Category::find($id);
+            $category->delete();
+            flash('Category Delete success')->success();
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            flash($th->getMessage())->error();
+            return redirect()->back();
+        }
+    }
+
+
+    public function statusUpdate($id){
+        $category = Category::find($id);
+        if($category){
+            if($category->status == 1 ){
+                $category->status = 0;
+            }else{
+                $category->status =  1;
+            }
+            $category->save();
+            flash('Category status update successfully')->success();
+            return redirect()->back();
+        }else{
+            flash('data not found')->error();
+        }
     }
 }

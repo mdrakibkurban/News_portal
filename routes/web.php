@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 use PhpParser\Node\Expr\FuncCall;
@@ -22,5 +23,7 @@ Route::get('/', function () {
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(function(){
      Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
+     Route::resource('/categories',CategoryController::class);
+     Route::get('/category-status/{id}',[CategoryController::class,'statusUpdate'])->name('status.category');
 });
 require __DIR__.'/auth.php';
