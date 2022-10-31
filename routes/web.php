@@ -24,6 +24,8 @@ Route::get('/', function () {
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(function(){
      Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
      Route::resource('/categories',CategoryController::class);
-     Route::get('/category-status/{id}',[CategoryController::class,'statusUpdate'])->name('status.category');
+     Route::post('/multiple-delete-category',[CategoryController::class,'multipleDeleteCategory'])
+     ->name('category.multiple-delete');
+     Route::get('/category-status',[CategoryController::class,'categoryStatus'])->name('category.status');
 });
 require __DIR__.'/auth.php';

@@ -30,7 +30,7 @@
                     <div class="form-group row">
                         <label for="name" class="col-sm-3 col-form-label">Category Name </label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" name="name" id="name" placeholder="Category Name">
+                            <input type="text" class="form-control" value="{{ old('name')}}" name="name" id="name" placeholder="Category Name">
                             @error('name')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -41,13 +41,16 @@
                         <label for="status" class="col-sm-3 col-form-label">Category status </label>
                         <div class="col-sm-9">
                             <div class="custom-control custom-radio d-inline mr-2">
-                                <input class="custom-control-input" type="radio" id="active" value="1" name="status">
+                                <input class="custom-control-input" type="radio" id="active" value="1" name="status" checked>
                                 <label for="active" class="custom-control-label">Active</label>
                                 </div>
                                 <div class="custom-control custom-radio d-inline">
                                 <input class="custom-control-input" type="radio" id="inactive"  value="0" name="status">
                                 <label for="inactive" class="custom-control-label">Inactive</label>
                             </div>
+                            @error('status')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>

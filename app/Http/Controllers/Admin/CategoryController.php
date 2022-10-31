@@ -41,7 +41,8 @@ class CategoryController extends Controller
     {
 
             $request->validate([
-                'name'=>'required|string|unique:categories'
+                'name'=>'required|string|unique:categories',
+                'status' => 'required'
             ]);
 
            try {
@@ -95,7 +96,8 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'=>'required|string|unique:categories,name,'.$id
+            'name'=>'required|string|unique:categories,name,'.$id,
+            'status' => 'required'
         ]);
 
         $category = Category::find($id);
@@ -136,19 +138,23 @@ class CategoryController extends Controller
     }
 
 
-    public function statusUpdate($id){
-        $category = Category::find($id);
-        if($category){
-            if($category->status == 1 ){
-                $category->status = 0;
-            }else{
-                $category->status =  1;
-            }
-            $category->save();
-            flash('Category status update successfully')->success();
-            return redirect()->back();
-        }else{
-            flash('data not found')->error();
-        }
+    public function categoryStatus(Request $request){
+        $category = Category::find($request->id);
+        $category->status = $request->status;
+        $category->save();
+        return response()->json(['message' => 'success']);
+        
+    }
+
+
+    public function multipleDeleteCategory(Request $request){
+         $category = Category::whereIn('id',explode("," ,$request->strIds));
+         $total   = $category->count();
+         $category->delete();
+         return response()->json([
+             'success' => true,
+             'message' => 'Category delete successfully',
+             'total'   =>  $total,
+         ]);
     }
 }
