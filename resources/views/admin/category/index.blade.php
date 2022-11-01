@@ -34,7 +34,8 @@
                         <th>Name</th>
                         <th>User</th>
                         <th style="width: 100px">Status</th>
-                        <th style="width: 120px">Action</th>
+                        <th style="width: 120px">Acton</th>
+                        
                       </tr>
                     </thead>
                     <tbody>
@@ -48,13 +49,13 @@
                         <td>{{$category->name ?? ''}}</td>
                         <td>{{$category->user->name ?? ''}}</td>
                         <td>
-                          <input type="checkbox" data-toggle="toggle" data-on="Active"  data-of="Inactive" id="categoryStatus" data-id="{{$category->id}}"
-                          {{ $category->status === 1 ? 'checked' : ''}}>
+                          <input type="checkbox" data-toggle="toggle" data-on="Active"  data-off="Inactive" id="categoryStatus" data-id="{{$category->id}}"
+                          data-size="small" data-width="85" data-onstyle="success" data-offstyle="danger" {{ $category->status === 1 ? 'checked' : ''}}>
                         </td>
                         <td style="width: 120px">
                             <a href="{{ route('admin.categories.edit',$category->id)}}" class="btn btn-warning btn-sm">Edit</a>
 
-                            {{-- delete category --}}
+                           
                             <button class="btn btn-danger btn-sm"
                              data-id ="category-delete-{{$category->id}}"
                              id="deleteCategory"
@@ -64,7 +65,7 @@
                                @csrf
                                @method('delete')
                             </form>
-                            {{-- delete category --}}
+                           
                         </td>
                       </tr>
                      @endforeach
@@ -183,7 +184,11 @@
              }
         });
         //All Category Delete
+        
     });
+
        
   </script>
+  
+
 @endpush

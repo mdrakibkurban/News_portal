@@ -2,6 +2,7 @@
 
 <html lang="en">
 <head>
+  @stack('css')
   @include('admin.layouts.head')
 </head>
 <body class="hold-transition sidebar-mini">
