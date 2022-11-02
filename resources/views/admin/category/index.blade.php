@@ -32,10 +32,8 @@
                         <th style="width: 10px"><input type="checkbox" id="checkAll"/></th>
                         <th style="width: 10px">#Id</th>
                         <th>Name</th>
-                        <th>User</th>
                         <th style="width: 100px">Status</th>
-                        <th style="width: 120px">Acton</th>
-                        
+                        <th style="width: 120px">Acton</th>   
                       </tr>
                     </thead>
                     <tbody>
@@ -47,7 +45,6 @@
                         </td>
                         <td>{{$loop->iteration}}</td>
                         <td>{{$category->name ?? ''}}</td>
-                        <td>{{$category->user->name ?? ''}}</td>
                         <td>
                           <input type="checkbox" data-toggle="toggle" data-on="Active"  data-off="Inactive" id="categoryStatus" data-id="{{$category->id}}"
                           data-size="small" data-width="85" data-onstyle="success" data-offstyle="danger" {{ $category->status === 1 ? 'checked' : ''}}>
@@ -113,12 +110,19 @@
             }else{
                var status = 0;
             }
+  
+            let change = status == 1 ? 'Active' : 'Inactive';
             $.ajax({
                 url    : "{{ route('admin.category.status') }}",
                 method : "get",
                 data   : {id : id , status : status},
                 success: function(result){
-                     console.log(result);
+                  if(result.success == true){
+                    Toast.fire({
+                        icon: 'success',
+                        title: result.message +' '+ change +'!!',
+                    })
+                  }
                 }
              });
                     
@@ -151,36 +155,58 @@
              if(idsArr.length < 1){
                 alert('please select atleast 1 item!!');
              }else{
-                if(confirm('Are you sure remove selected items?')){
-                     let strIds = idsArr.join(",");
-                     $.ajax({
-                        url    : "{{ route('admin.category.multiple-delete') }}",
-                        method : "post",
-                        data   : {strIds : strIds},
-                        success: function(result){
-                            if(result.success == true){
-                              $('.checkBox:checked').each(function(){
-                                $(this).parents("tr").remove();
-                              });
-                              const Toast =  Swal.mixin({
-                                  toast: true,
-                                  position: 'top-end',
-                                  showConfirmButton: false,
-                                  timer: 3000,
-                                  timerProgressBar: true,
-                                  didOpen: (toast) => {
-                                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                // if(confirm('Are you sure remove selected items?')){
+                //      let strIds = idsArr.join(",");
+                //      $.ajax({
+                //         url    : "{{ route('admin.category.remove.items') }}",
+                //         method : "post",
+                //         data   : {strIds : strIds},
+                //         success: function(result){
+                //             if(result.success == true){
+                //               $('.checkBox:checked').each(function(){
+                //                 $(this).parents("tr").remove();
+                //               });
+                //               Toast.fire({
+                //                   icon: 'success',
+                //                   title: result.total+' '+result.message
+                //               })
+                //             }
+                //         }
+                //     });
+                // }
+
+                let strIds = idsArr.join(",");
+
+                    Swal.fire({
+                      title: 'Are you sure?',
+                      text: "You won't be able to revert this!",
+                      icon: 'warning',
+                      showCancelButton: true,
+                      confirmButtonColor: '#3085d6',
+                      cancelButtonColor: '#d33',
+                      confirmButtonText: 'Yes, delete items it!'
+                      }).then((result) => {
+                      if (result.isConfirmed) {
+                        $.ajax({
+                          url    : "{{ route('admin.category.remove.items') }}",
+                          method : "post",
+                          data   : {strIds : strIds},
+                          success: function(result){
+                              if(result.success == true){
+                                if(result.success == true){
+                                    $('.checkBox:checked').each(function(){
+                                      $(this).parents("tr").remove();
+                                    });
+                                    Toast.fire({
+                                        icon: 'success',
+                                        title: result.total+' '+result.message
+                                    })
                                   }
-                               })
-                                Toast.fire({
-                                  icon: 'success',
-                                  title: result.total+' '+result.message
-                                })
-                            }
-                        }
-                    });
-                }
+                              }
+                          }
+                        });   
+                      }
+                      })  
              }
         });
         //All Category Delete

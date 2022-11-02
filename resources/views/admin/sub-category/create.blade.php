@@ -1,14 +1,14 @@
 @extends('admin.layouts.app')
-@section('title','Category')
+@section('title','Sub-Category')
 @section('title-content')
 <div class="row mb-2">
     <div class="col-sm-6">
-      <h1 class="m-0">Category</h1>
+      <h1 class="m-0">Sub-Category</h1>
     </div><!-- /.col -->
     <div class="col-sm-6">
       <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item active">Category</li>
+        <li class="breadcrumb-item active">Sub-Category</li>
       </ol>
     </div><!-- /.col -->
   </div><!-- /.row -->  
@@ -19,26 +19,46 @@
     <div class="col-md-8">
         <div class="card">
             <div class="card-header">
-              <h3 class="card-title mt-2">Category Create</h3>
+              <h3 class="card-title mt-2">Sub-Category Create</h3>
               <div class="card-tools">
-                  <a href="{{ route('admin.categories.index')}}" class="btn btn-primary">Category list</a>
+                  <a href="{{ route('admin.sub-categories.index')}}" class="btn btn-primary">Sub-Category list</a>
               </div>
             </div>
-            <form action="{{ route('admin.categories.store')}}" method="post">
+            <form action="{{ route('admin.sub-categories.store')}}" method="post">
                 @csrf
                 <div class="card-body">
                     <div class="form-group row">
-                        <label for="name" class="col-sm-3 col-form-label">Category Name </label>
+                        <label for="name" class="col-sm-3 col-form-label">Name </label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" value="{{ old('name')}}" name="name" id="name" placeholder="Category Name">
+                            <input type="text" class="form-control" value="{{ old('name')}}" name="name" id="name" placeholder="Sub-Category Name">
                             @error('name')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                     </div> 
+
+                    <div class="form-group row">
+                      <label for="name" class="col-sm-3 col-form-label">Category</label>
+                      <div class="col-sm-9">
+                          <select name="category_id" value="{{ old('category_id')}}" class="form-control">
+                            <option value="">--category select--</option>
+                            @foreach($categories as $category)
+
+                            <option value="{{ $category->id }}" 
+                            {{ old('category_id') ==  $category->id ? 'selected' : ' '}}>
+                            {{ $category->name }}
+                            </option>
+                            
+                            @endforeach
+                          </select>
+                          @error('category_id')
+                              <div class="text-danger">{{ $message }}</div>
+                          @enderror
+                      </div>
+                   </div> 
     
                     <div class="form-group row align-items-center">
-                        <label for="status" class="col-sm-3 col-form-label">Category status </label>
+                        <label for="status" class="col-sm-3 col-form-label">status </label>
                         <div class="col-sm-9">
                             <div class="custom-control custom-radio d-inline mr-2">
                                 <input class="custom-control-input" type="radio" id="active" value="1" name="status" checked>

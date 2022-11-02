@@ -6,8 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Interfaces\ICategoryRepository;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Yajra\DataTables\DataTables;
+
 
 class CategoryController extends Controller
 {
@@ -113,6 +112,7 @@ class CategoryController extends Controller
         $category = $this->categoryRepo->myDelete($id);
         if(!$category){
             flash('Category not found')->error();
+            return redirect()->back();
         }else{
             $category->delete();
             flash('Category delete successfully')->success();
@@ -123,11 +123,14 @@ class CategoryController extends Controller
 
     public function categoryStatus(Request $request){
         $this->categoryRepo->categoryStatus($request);
-        return response()->json(['message' => 'success']);   
+        return response()->json([
+            'success' =>true,
+            'message' => "category status"
+        ]);  
     }
 
 
-    public function multipleDeleteCategory(Request $request){
+    public function CategoryRemoveItems(Request $request){
          $category = Category::whereIn('id',explode("," ,$request->strIds));
          $total   = $category->count();
          $category->delete();

@@ -32,7 +32,7 @@
               </li>
 
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('admin.sub-categories.index')}}" class="nav-link {{ request()->is('*/sub-categories*') ? 'active' : ' '}}">
                   <i class="fas fa-list nav-icon"></i>
                   <p>Sub Category</p>
                 </a>

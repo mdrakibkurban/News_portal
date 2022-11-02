@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\SubCategoryController;
 use Illuminate\Support\Facades\Route;
 use PhpParser\Node\Expr\FuncCall;
 
@@ -26,11 +27,19 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
 
      //category route start
      Route::resource('/categories',CategoryController::class);
-     Route::post('/multiple-delete-category',[CategoryController::class,'multipleDeleteCategory'])
-     ->name('category.multiple-delete');
-     Route::get('/category-status',[CategoryController::class,'categoryStatus'])->name('category.status');
-     Route::get('/category/list',[CategoryController::class,'categoryList']);
+     Route::post('/category/remove/items',[CategoryController::class,'CategoryRemoveItems'])
+     ->name('category.remove.items');
+     Route::get('/category-status',[CategoryController::class,'categoryStatus'])
+     ->name('category.status');
      //category route end
+
+     //sub-category route start
+      Route::resource('/sub-categories',SubCategoryController::class);
+      Route::get('/sub-category-status',[SubCategoryController::class,'subCategoryStatus'])
+      ->name('sub-category.status');
+      Route::post('/sub-category/remove/items',[SubCategoryController::class,'subCategoryRemoveItems'])
+     ->name('sub-category.remove.items');
+     //sub-category route end
    
 
 });
