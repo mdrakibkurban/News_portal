@@ -149,7 +149,7 @@
              });
 
              if(idsArr.length < 1){
-                alert('please select atleast 1 item to remove!!');
+                alert('please select atleast 1 item!!');
              }else{
                 if(confirm('Are you sure remove selected items?')){
                      let strIds = idsArr.join(",");

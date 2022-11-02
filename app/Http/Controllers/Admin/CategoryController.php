@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Interfaces\ICategoryRepository;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,6 +11,13 @@ use Yajra\DataTables\DataTables;
 
 class CategoryController extends Controller
 {
+
+    protected $categoryRepo;
+
+    public function __construct(ICategoryRepository $categoryRepo)
+    {
+        $this->categoryRepo = $categoryRepo;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +25,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $data['categories'] = Category::with('user')->latest()->get();
+        $data['categories'] = $this->categoryRepo->myGet();
         return view('admin.category.index',$data);
     }
 
@@ -40,22 +48,13 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
 
-            $request->validate([
-                'name'=>'required|string|unique:categories',
-                'status' => 'required'
-            ]);
+        $request->validate([
+            'name'=>'required|string|unique:categories',
+            'status' => 'required'
+         ]);
 
-           try {
-            $category = new Category();
-            $category->user_id = Auth::id();
-            $category->name = $request->name;
-            $category->status = $request->status;
-            $category->save();
-            flash('Category Create successfully')->success();
-            return redirect()->route('admin.categories.index');
-           } catch (\Throwable $th) {
-             flash($th->getMessage())->error();
-           }
+         $this->categoryRepo->categoryStore($request);
+         return redirect()->route('admin.categories.index');
     }
 
     /**
@@ -77,9 +76,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::find($id);
+        $category = $this->categoryRepo->myFind($id);
         if(!$category){
-            flash('data not found')->error();
+            flash('Category not found')->error();
             return redirect()->back();
         }
         $data['category'] = $category;
@@ -98,24 +97,9 @@ class CategoryController extends Controller
         $request->validate([
             'name'=>'required|string|unique:categories,name,'.$id,
             'status' => 'required'
-        ]);
-
-        $category = Category::find($id);
-        if(!$category){
-            flash('data not found')->error();
-            return redirect()->back();
-        }
-
-        try {
-            $category->user_id = Auth::id();
-            $category->name = $request->name;
-            $category->status = $request->status;
-            $category->save();
-            flash('Category update successfully')->success();
-            return redirect()->route('admin.categories.index');
-           } catch (\Throwable $th) {
-             flash($th->getMessage())->error();
-           }
+        ]);    
+        $this->categoryRepo->categoryUpdate($request,$id);
+        return redirect()->route('admin.categories.index');
     }
 
     /**
@@ -126,24 +110,20 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        try {
-            $category = Category::find($id);
+        $category = $this->categoryRepo->myDelete($id);
+        if(!$category){
+            flash('Category not found')->error();
+        }else{
             $category->delete();
-            flash('Category Delete success')->success();
-            return redirect()->back();
-        } catch (\Throwable $th) {
-            flash($th->getMessage())->error();
+            flash('Category delete successfully')->success();
             return redirect()->back();
         }
     }
 
 
     public function categoryStatus(Request $request){
-        $category = Category::find($request->id);
-        $category->status = $request->status;
-        $category->save();
-        return response()->json(['message' => 'success']);
-        
+        $this->categoryRepo->categoryStatus($request);
+        return response()->json(['message' => 'success']);   
     }
 
 
