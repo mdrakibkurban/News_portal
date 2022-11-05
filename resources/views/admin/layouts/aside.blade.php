@@ -26,7 +26,7 @@
 
               <li class="nav-item menu-is-opening menu-open">
                 <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-home"></i>
+                  <i class="nav-icon fas fa-file"></i>
                   <p>
                     Category
                     <i class="right fas fa-angle-left"></i>

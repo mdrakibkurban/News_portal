@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Interfaces\ICategoryRepository;
 use App\Interfaces\ISubCategoryRepository;
+use App\Models\Category;
 use App\Models\SubCategory;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
@@ -13,10 +14,9 @@ class SubCategoryController extends Controller
 {
     protected $subCategoryRepo;
     protected $categoryRepo;
-    public function __construct(ISubCategoryRepository $subCategoryRepo, ICategoryRepository $categoryRepo)
+    public function __construct(ISubCategoryRepository $subCategoryRepo)
     {
         $this->subCategoryRepo = $subCategoryRepo;
-        $this->categoryRepo = $categoryRepo;
     }
     /**
      * Display a listing of the resource.
@@ -36,7 +36,7 @@ class SubCategoryController extends Controller
      */
     public function create()
     {
-        $data['categories'] = $this->categoryRepo->myGet(); 
+        $data['categories'] = Category::latest()->active()->get(); 
         return view('admin.sub-category.create',$data);
     }
 
@@ -84,7 +84,7 @@ class SubCategoryController extends Controller
             return redirect()->back();
         }
         $data['subCategory'] = $subCategory;
-        $data['categories'] = $this->categoryRepo->myGet(); 
+        $data['categories'] = Category::latest()->active()->get(); 
         return view('admin.sub-category.edit',$data);
 
     }
