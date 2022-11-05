@@ -52,15 +52,13 @@
                     <div class="form-group row">
                       <label for="name" class="col-sm-3 col-form-label">Choose Category</label>
                       <div class="col-sm-9">
-                          <select name="category_id" value="{{ old('category_id')}}" class="form-control @error('category_id') is-invalid @enderror">
-                            <option value="">--category select--</option>
+                          <select name="category_id" value="{{ old('category_id')}}" class="form-control @error('category_id') is-invalid @enderror" id="select2">
+                            <option value="">-- Choose Category --</option>
                             @foreach($categories as $category)
-
-                            <option value="{{ $category->id }}" 
-                            {{ old('category_id') ==  $category->id ? 'selected' : ' '}}>
-                            {{ $category->name_en }} | {{ $category->name_bn }}
-                            </option>
-                            
+                              <option value="{{ $category->id }}" 
+                              {{ old('category_id') ==  $category->id ? 'selected' : ' '}}>
+                              {{ $category->name_en }} | {{ $category->name_bn }}
+                              </option>
                             @endforeach
                           </select>
                           @error('category_id')
@@ -98,4 +96,17 @@
     </div>
   </div>
 @endsection
+
+@push('css')
+<style>
+   .select2-selection {
+    padding-bottom: 28px!important;
+  }
+  .select2-selection__arrow{
+    padding-bottom: 35px!important;
+  }
+  
+  </style>
+   
+@endpush
 

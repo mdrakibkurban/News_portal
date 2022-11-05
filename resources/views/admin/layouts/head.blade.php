@@ -9,9 +9,14 @@
 <link rel="stylesheet" href="{{asset("/admin/plugins/fontawesome-free/css/all.min.css")}}">
 <!-- Theme style -->
 <link rel="stylesheet" href="{{asset("/admin/dist/css/adminlte.min.css")}}">
+ <!-- Select2 -->
+<link rel="stylesheet" href="{{asset("/admin/plugins/select2/css/select2.min.css")}}">
 
 <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 
 <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
 
 <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+
+@stack('css')
+
