@@ -28,15 +28,25 @@
                 @csrf
                 @method('put')
                 <div class="card-body">
-                    <div class="form-group row">
-                        <label for="name" class="col-sm-3 col-form-label">Category Name </label>
+                  <div class="form-group row">
+                    <label for="name_en" class="col-sm-3 col-form-label">Name English </label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" name="name" id="name" placeholder="Category Name" value="{{ $category->name }}">
-                            @error('name')
+                              <input type="text" class="form-control" value="{{ $category->name_en )}}" name="name_en" id="name_en" placeholder="Category Name_EN">
+                              @error('name_en')
+                                  <div class="text-danger">{{ $message }}</div>
+                              @enderror
+                          </div>
+                      </div> 
+
+                      <div class="form-group row">
+                        <label for="name_bn" class="col-sm-3 col-form-label">Name Bangla </label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" value="{{ $category->name_bn }}" name="name_bn" id="name_bn" placeholder="Category Name_BN">
+                            @error('name_bn')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                    </div> 
+                    </div>
     
                     <div class="form-group row align-items-center">
                         <label for="status" class="col-sm-3 col-form-label">Category status </label>

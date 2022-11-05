@@ -19,7 +19,8 @@ class CategorySeeder extends Seeder
 
         foreach (range(1,10) as $item) {
             Category::create([
-                'name' => $facker->unique()->name,
+                'name_en' => $facker->unique()->name,
+                'name_bn' => $facker->unique()->name,
                 'user_id' =>1,
                 'status' => $this->randomStatus()
             ]);

@@ -17,7 +17,6 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        @include('flash::message')
         @yield('title-content')
       </div><!-- /.container-fluid -->
     </div>
@@ -37,11 +36,9 @@
 
   
 </div>
-<!-- ./wrapper -->
-
-<!-- REQUIRED SCRIPTS -->
 @include('admin.layouts.scripts')
-
 @stack('scripts')
+
+{!! Toastr::message() !!}
 </body>
 </html>

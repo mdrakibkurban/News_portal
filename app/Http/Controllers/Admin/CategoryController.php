@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Interfaces\ICategoryRepository;
 use App\Models\Category;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
 
@@ -48,11 +49,13 @@ class CategoryController extends Controller
     {
 
         $request->validate([
-            'name'=>'required|string|unique:categories',
+            'name_en'=>'required|string|unique:categories',
+            'name_bn'=>'required|string|unique:categories',
             'status' => 'required'
          ]);
 
          $this->categoryRepo->categoryStore($request);
+         Toastr::success('Categotry create successfuly', 'success', ["positionClass" => "toast-top-right",  "closeButton"=> true,   "progressBar"=> true,]);
          return redirect()->route('admin.categories.index');
     }
 
@@ -94,10 +97,12 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'=>'required|string|unique:categories,name,'.$id,
+            'name_en'=>'required|string|unique:categories,name_en,'.$id,
+            'name_bn'=>'required|string|unique:categories,name_bn,'.$id,
             'status' => 'required'
         ]);    
         $this->categoryRepo->categoryUpdate($request,$id);
+        Toastr::success('Categotry Update successfuly', 'success', ["positionClass" => "toast-top-right",  "closeButton"=> true,   "progressBar"=> true,]);
         return redirect()->route('admin.categories.index');
     }
 
@@ -113,11 +118,12 @@ class CategoryController extends Controller
         if(!$category){
             flash('Category not found')->error();
             return redirect()->back();
-        }else{
-            $category->delete();
-            flash('Category delete successfully')->success();
-            return redirect()->back();
         }
+        $category->delete();
+        return response()->json([
+             'success' =>true,
+             'message' => "category delete successfully"
+        ]);
     }
 
 

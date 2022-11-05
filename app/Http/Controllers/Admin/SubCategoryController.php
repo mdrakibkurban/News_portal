@@ -6,15 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Interfaces\ICategoryRepository;
 use App\Interfaces\ISubCategoryRepository;
 use App\Models\SubCategory;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
 class SubCategoryController extends Controller
 {
-    protected $SubcategoryRepo;
+    protected $subCategoryRepo;
     protected $categoryRepo;
-    public function __construct(ISubCategoryRepository $SubcategoryRepo, ICategoryRepository $categoryRepo)
+    public function __construct(ISubCategoryRepository $subCategoryRepo, ICategoryRepository $categoryRepo)
     {
-        $this->SubcategoryRepo = $SubcategoryRepo;
+        $this->subCategoryRepo = $subCategoryRepo;
         $this->categoryRepo = $categoryRepo;
     }
     /**
@@ -24,7 +25,7 @@ class SubCategoryController extends Controller
      */
     public function index()
     {
-        $data['subCategories'] = $this->SubcategoryRepo->myGet();
+        $data['subCategories'] = $this->subCategoryRepo->myGet();
         return view('admin.sub-category.index',$data);
     }
 
@@ -48,11 +49,13 @@ class SubCategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required|string|unique:sub_categories',
+            'name_en'=>'required|string|unique:sub_categories',
+            'name_bn'=>'required|string|unique:sub_categories',
             'category_id'=>'required',
             'status' => 'required'
          ]);
-         $this->SubcategoryRepo->subCategoryStore($request); 
+         $this->subCategoryRepo->subCategoryStore($request); 
+         Toastr::success('Sub-Categotry create successfuly', 'success', ["positionClass" => "toast-top-right",  "closeButton"=> true,   "progressBar"=> true,]);
          return redirect()->route('admin.sub-categories.index');
     }
 
@@ -75,7 +78,7 @@ class SubCategoryController extends Controller
      */
     public function edit($id)
     {
-        $subCategory = $this->SubcategoryRepo->myFind($id);
+        $subCategory = $this->subCategoryRepo->myFind($id);
          if(!$subCategory){
             flash('Sub-Category not found')->error();
             return redirect()->back();
@@ -96,11 +99,13 @@ class SubCategoryController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'=>'required|string|unique:sub_categories,name,'.$id,
+            'name_en'=>'required|string|unique:sub_categories,name_en,'.$id,
+            'name_bn'=>'required|string|unique:sub_categories,name_bn,'.$id,
             'category_id'=>'required',
             'status' => 'required'
          ]);
-         $this->SubcategoryRepo->subCategoryUpdate($request,$id); 
+         $this->subCategoryRepo->subCategoryUpdate($request,$id);
+         Toastr::success('Sub-Categotry Update successfuly', 'success', ["positionClass" => "toast-top-right",  "closeButton"=> true,   "progressBar"=> true,]); 
          return redirect()->route('admin.sub-categories.index');
     }
 
@@ -112,7 +117,7 @@ class SubCategoryController extends Controller
      */
     public function destroy($id)
     {
-        $subCategory = $this->SubcategoryRepo->myDelete($id);
+        $subCategory = $this->subCategoryRepo->myDelete($id);
         if(!$subCategory){
             flash('Sub-Category not found')->error();
             return redirect()->back();
@@ -125,7 +130,7 @@ class SubCategoryController extends Controller
     }
 
     public function subCategoryStatus(Request $request){
-        $this->SubcategoryRepo->subCategoryStatus($request);
+        $this->subCategoryRepo->subCategoryStatus($request);
         return response()->json([
             'success' =>true,
             'message' => "sub-category status"

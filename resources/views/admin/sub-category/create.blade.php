@@ -27,18 +27,30 @@
             <form action="{{ route('admin.sub-categories.store')}}" method="post">
                 @csrf
                 <div class="card-body">
+
                     <div class="form-group row">
-                        <label for="name" class="col-sm-3 col-form-label">Name </label>
+                      <label for="name_en" class="col-sm-3 col-form-label">Name English </label>
+                      <div class="col-sm-9">
+                          <input type="text" class="form-control" value="{{ old('name_en')}}" name="name_en" id="name_en" placeholder="SubCategory Name_EN">
+                          @error('name_en')
+                              <div class="text-danger">{{ $message }}</div>
+                          @enderror
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="name_bn" class="col-sm-3 col-form-label">Name Bangla </label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" value="{{ old('name')}}" name="name" id="name" placeholder="Sub-Category Name">
-                            @error('name')
+                            <input type="text" class="form-control" value="{{ old('name_bn') }}" name="name_bn" id="name_bn" placeholder="SubCategory Name_BN">
+                            @error('name_bn')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                    </div> 
+                    </div>
+
 
                     <div class="form-group row">
-                      <label for="name" class="col-sm-3 col-form-label">Category</label>
+                      <label for="name" class="col-sm-3 col-form-label">Category English</label>
                       <div class="col-sm-9">
                           <select name="category_id" value="{{ old('category_id')}}" class="form-control">
                             <option value="">--category select--</option>
@@ -46,7 +58,7 @@
 
                             <option value="{{ $category->id }}" 
                             {{ old('category_id') ==  $category->id ? 'selected' : ' '}}>
-                            {{ $category->name }}
+                            {{ $category->name_en }}
                             </option>
                             
                             @endforeach
@@ -56,16 +68,36 @@
                           @enderror
                       </div>
                    </div> 
+
+                    <div class="form-group row">
+                      <label for="name" class="col-sm-3 col-form-label">Category Bangla</label>
+                      <div class="col-sm-9">
+                          <select name="category_id" value="{{ old('category_id')}}" class="form-control">
+                            <option value="">--category select--</option>
+                            @foreach($categories as $category)
+
+                            <option value="{{ $category->id }}" 
+                            {{ old('category_id') ==  $category->id ? 'selected' : ' '}}>
+                            {{ $category->name_bn }}
+                            </option>
+                            
+                            @endforeach
+                          </select>
+                          @error('category_id')
+                              <div class="text-danger">{{ $message }}</div>
+                          @enderror
+                      </div>
+                  </div> 
     
                     <div class="form-group row align-items-center">
                         <label for="status" class="col-sm-3 col-form-label">status </label>
                         <div class="col-sm-9">
                             <div class="custom-control custom-radio d-inline mr-2">
-                                <input class="custom-control-input" type="radio" id="active" value="1" name="status" checked>
+                                <input class="custom-control-input" type="radio" id="active" value="1" name="status" {{(old('status') == '1') ? 'checked' : ''}}>
                                 <label for="active" class="custom-control-label">Active</label>
                                 </div>
                                 <div class="custom-control custom-radio d-inline">
-                                <input class="custom-control-input" type="radio" id="inactive"  value="0" name="status">
+                                <input class="custom-control-input" type="radio" id="inactive"  value="0" name="status" {{(old('status') == '0') ? 'checked' : ''}}>
                                 <label for="inactive" class="custom-control-label">Inactive</label>
                             </div>
                             @error('status')

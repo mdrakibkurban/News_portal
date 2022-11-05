@@ -29,23 +29,33 @@
                 @method('put')
                 <div class="card-body">
                     <div class="form-group row">
-                        <label for="name" class="col-sm-3 col-form-label">Name </label>
+                      <label for="name_en" class="col-sm-3 col-form-label">Name English </label>
+                      <div class="col-sm-9">
+                          <input type="text" class="form-control" value="{{ $subCategory->name_en }}" name="name_en" id="name_en" placeholder="SubCategory Name_EN">
+                          @error('name_en')
+                              <div class="text-danger">{{ $message }}</div>
+                          @enderror
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="name_bn" class="col-sm-3 col-form-label">Name Bangla </label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" value="{{ $subCategory->name }}" name="name" id="name" placeholder="Sub-Category Name">
-                            @error('name')
+                            <input type="text" class="form-control" value="{{  $subCategory->name_bn }}" name="name_bn" id="name_bn" placeholder="SubCategory Name_BN">
+                            @error('name_bn')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                    </div> 
+                    </div>
 
                     <div class="form-group row">
-                      <label for="name" class="col-sm-3 col-form-label">Category</label>
+                      <label for="name" class="col-sm-3 col-form-label">Category English</label>
                       <div class="col-sm-9">
                           <select name="category_id" class="form-control">
                             <option value="">--category select--</option>
                             @foreach($categories as $category)
                             <option value="{{ $category->id }}" {{ $subCategory->category_id ==  $category->id ? 'selected' : ' '}}>
-                                {{ $category->name }}
+                                {{ $category->name_en }}
                             </option>
                             @endforeach
                           </select>
@@ -54,6 +64,24 @@
                           @enderror
                       </div>
                    </div> 
+
+                   
+                   <div class="form-group row">
+                    <label for="name" class="col-sm-3 col-form-label">Category Bangla</label>
+                    <div class="col-sm-9">
+                        <select name="category_id" class="form-control">
+                          <option value="">--category select--</option>
+                          @foreach($categories as $category)
+                          <option value="{{ $category->id }}" {{ $subCategory->category_id ==  $category->id ? 'selected' : ' '}}>
+                              {{ $category->name_bn }}
+                          </option>
+                          @endforeach
+                        </select>
+                        @error('category_id')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                  </div> 
     
                     <div class="form-group row align-items-center">
                         <label for="status" class="col-sm-3 col-form-label">status </label>

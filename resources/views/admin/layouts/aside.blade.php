@@ -14,31 +14,42 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Menu
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-
-              <li class="nav-item">
-                <a href="{{ route('admin.categories.index')}}" class="nav-link {{ request()->is('*/categories*') ? 'active' : ' '}}">
-                  <i class="fas fa-list nav-icon"></i>
-                  <p>Category</p>
+              <li class="nav-item menu-open">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>
+                    Dashboard
+                  </p>
                 </a>
+                
               </li>
 
-              <li class="nav-item">
-                <a href="{{ route('admin.sub-categories.index')}}" class="nav-link {{ request()->is('*/sub-categories*') ? 'active' : ' '}}">
-                  <i class="fas fa-list nav-icon"></i>
-                  <p>Sub Category</p>
+              <li class="nav-item menu-is-opening menu-open">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-home"></i>
+                  <p>
+                    Category
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
                 </a>
+                <ul class="nav nav-treeview" style="display: block;">
+    
+                  <li class="nav-item">
+                    <a href="{{ route('admin.categories.index')}}" class="nav-link {{ request()->is('*/categories*') ? 'active' : ' '}}">
+                      <i class="fas fa-list nav-icon"></i>
+                      <p>Category</p>
+                    </a>
+                  </li>
+    
+                  <li class="nav-item">
+                    <a href="{{ route('admin.sub-categories.index')}}" class="nav-link {{ request()->is('*/sub-categories*') ? 'active' : ' '}}">
+                      <i class="fas fa-list nav-icon"></i>
+                      <p>Sub Category</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
-            </ul>
-          </li>
+        
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

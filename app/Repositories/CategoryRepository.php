@@ -17,7 +17,8 @@ class CategoryRepository extends BaseRepository implements ICategoryRepository
         try {
             $category = $this->model;
             $category->user_id = Auth::id();
-            $category->name = $request->name;
+            $category->name_en = $request->name_en;
+            $category->name_bn = $request->name_bn;
             $category->status = $request->status;
             $category->save();
             flash('Category Create successfully')->success();
@@ -30,7 +31,8 @@ class CategoryRepository extends BaseRepository implements ICategoryRepository
             try {
                 $category = $this->myFind($id);
                 $category->user_id = Auth::id();
-                $category->name = $request->name;
+                $category->name_en = $request->name_en;
+                $category->name_bn = $request->name_bn;
                 $category->status = $request->status;
                 $category->save();
                 flash('Category Update Successfully')->success();

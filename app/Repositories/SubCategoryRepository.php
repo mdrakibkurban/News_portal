@@ -16,7 +16,8 @@ class SubCategoryRepository extends BaseRepository implements ISubCategoryReposi
     public function subCategoryStore($request){
         try {
             $subCategory = $this->model;
-            $subCategory->name = $request->name;
+            $subCategory->name_en = $request->name_en;
+            $subCategory->name_bn = $request->name_bn;
             $subCategory->user_id = Auth::id();
             $subCategory->category_id = $request->category_id;
             $subCategory->status = $request->status;
@@ -29,7 +30,8 @@ class SubCategoryRepository extends BaseRepository implements ISubCategoryReposi
     public function subCategoryUpdate($request ,$id){
         try {
             $subCategory = $this->myFind($id);
-            $subCategory->name = $request->name;
+            $subCategory->name_en = $request->name_en;
+            $subCategory->name_bn = $request->name_bn;
             $subCategory->user_id = Auth::id();
             $subCategory->category_id = $request->category_id;
             $subCategory->status = $request->status;

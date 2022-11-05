@@ -20,7 +20,7 @@
         <div class="card">
             <div class="card-header">
               <h3 class="card-title mt-2">Manage Sub-Category</h3>
-              <button class="btn btn-primary ml-3" id="deleteAllSubCategory">Delete All</button>
+              <button class="btn btn-danger ml-3" id="deleteAllSubCategory">Delete All</button>
               <div class="card-tools">
                   <a href="{{ route('admin.sub-categories.create')}}" class="btn btn-primary">Add Sub-Category</a>
               </div>
@@ -33,8 +33,9 @@
                           <input type="checkbox" id="chcekAll">
                         </th>
                         <th style="width: 10px">#Id</th>
-                        <th>Name</th>
-                        <th>Category</th>
+                        <th>Name_En</th>
+                        <th>Name_Bn</th>
+                        <th>Category Name</th>
                         <th style="width: 100px">Status</th>
                         <th style="width: 120px">Acton</th>
                         
@@ -47,8 +48,13 @@
                                 <input type="checkbox" class="checkBox" data-id={{$subCategory->id}}>
                               </td>
                                <td>{{ $loop->iteration }}</td>
-                               <td>{{ $subCategory->name }}</td>
-                               <td>{{ $subCategory->category->name }}</td>
+                               <td>{{ $subCategory->name_en }}</td>
+                               <td>{{ $subCategory->name_bn }}</td>
+                               <td>
+                                   <span class="badge badge-secondary">{{ $subCategory->category->name_en }}</span>
+                                   
+                                   <span class="badge badge-secondary">{{ $subCategory->category->name_bn }}</span>
+                                </td>
                                <td>
                                 <input type="checkbox" data-toggle="toggle" data-size="small"
                                 data-width="85" data-on="Active" data-off="Inactive"  data-onstyle="success" data-offstyle="danger" id="changeStatus"
@@ -100,11 +106,11 @@
                 method : "delete",
                 success: function(result){
                   if(result.success == true){
-                    window.location.reload();
                     Toast.fire({
                       icon: 'success',
                       title:  result.message
                     })
+                    window.location.reload();
                   }
                 },error: function (error) {
                   alert(error);
@@ -194,13 +200,14 @@
                      success: function(result){
                         if(result.success == true){
                           if(result.success == true){
-                              $('.checkBox:checked').each(function(){
-                                $(this).parents("tr").remove();
-                              });
+                              // $('.checkBox:checked').each(function(){
+                              //   $(this).parents("tr").remove();
+                              // });
                               Toast.fire({
                                   icon: 'success',
                                   title: result.total+' '+result.message
                               })
+                              window.location.reload();
                             }
                         }
                      }

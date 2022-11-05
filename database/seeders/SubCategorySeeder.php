@@ -19,7 +19,8 @@ class SubCategorySeeder extends Seeder
 
         foreach (range(1,10) as $item) {
             SubCategory::create([
-                'name'        => $facker->unique()->name,
+                'name_en' => $facker->unique()->name,
+                'name_bn' => $facker->unique()->name,
                 'user_id'     => 1,
                 'category_id' => rand(1,10),
                 'status'      => $this->randomStatus()

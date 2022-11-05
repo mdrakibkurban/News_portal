@@ -28,24 +28,34 @@
                 @csrf
                 <div class="card-body">
                     <div class="form-group row">
-                        <label for="name" class="col-sm-3 col-form-label">Category Name </label>
+                        <label for="name_en" class="col-sm-3 col-form-label">Name English </label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" value="{{ old('name')}}" name="name" id="name" placeholder="Category Name">
-                            @error('name')
+                            <input type="text" class="form-control" value="{{ old('name_en')}}" name="name_en" id="name_en" placeholder="Category Name_EN">
+                            @error('name_en')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
+                    </div> 
+
+                    <div class="form-group row">
+                      <label for="name_bn" class="col-sm-3 col-form-label">Name Bangla </label>
+                      <div class="col-sm-9">
+                          <input type="text" class="form-control" value="{{ old('name_bn')}}" name="name_bn" id="name_bn" placeholder="Category Name_BN">
+                          @error('name_bn')
+                              <div class="text-danger">{{ $message }}</div>
+                          @enderror
+                      </div>
                     </div> 
     
                     <div class="form-group row align-items-center">
                         <label for="status" class="col-sm-3 col-form-label">Category status </label>
                         <div class="col-sm-9">
                             <div class="custom-control custom-radio d-inline mr-2">
-                                <input class="custom-control-input" type="radio" id="active" value="1" name="status" checked>
+                                <input class="custom-control-input" type="radio" id="active" value="1" name="status" {{(old('status') == '1') ? 'checked' : ''}}>
                                 <label for="active" class="custom-control-label">Active</label>
                                 </div>
                                 <div class="custom-control custom-radio d-inline">
-                                <input class="custom-control-input" type="radio" id="inactive"  value="0" name="status">
+                                <input class="custom-control-input" type="radio" id="inactive"  value="0" name="status" {{(old('status') == '0') ? 'checked' : ''}}>
                                 <label for="inactive" class="custom-control-label">Inactive</label>
                             </div>
                             @error('status')
