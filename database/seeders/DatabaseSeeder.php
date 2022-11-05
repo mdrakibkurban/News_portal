@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CategorySeeder::class,
             SubCategorySeeder::class,
+            DistrictSeeder::class,
+            SubDistrictSeeder::class
         ]);
     }
 }

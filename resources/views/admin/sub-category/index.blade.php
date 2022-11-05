@@ -33,8 +33,8 @@
                           <input type="checkbox" id="chcekAll">
                         </th>
                         <th style="width: 10px">#Id</th>
-                        <th>Name_En</th>
-                        <th>Name_Bn</th>
+                        <th>Name English</th>
+                        <th>Name Bangla</th>
                         <th>Category Name</th>
                         <th style="width: 100px">Status</th>
                         <th style="width: 120px">Acton</th>
@@ -43,8 +43,8 @@
                     </thead>
                     <tbody>
                         @foreach ($subCategories as $subCategory)
-                            <tr id={{$subCategory->id}}>
-                               <td>
+                            <tr id="ids{{$subCategory->id}}">
+                              <td>
                                 <input type="checkbox" class="checkBox" data-id={{$subCategory->id}}>
                               </td>
                                <td>{{ $loop->iteration }}</td>
@@ -89,7 +89,8 @@
 
  <script>
    $( document ).ready(function() {
-       $(document).on("click","#subCategoryDelete",function() {
+       $(document).on("click","#subCategoryDelete",function(e) {
+            e.preventDefault();
             let id = $(this).attr('data-id');
               Swal.fire({
               title: 'Are you sure?',
@@ -102,27 +103,26 @@
               }).then((result) => {
               if (result.isConfirmed) {
                 $.ajax({
-                url    :  `/admin/sub-categories/${id}`,
-                method : "delete",
-                success: function(result){
-                  if(result.success == true){
-                    Toast.fire({
-                      icon: 'success',
-                      title:  result.message
-                    })
-                    window.location.reload();
+                  url    :  `/admin/sub-categories/${id}`,
+                  method : "delete",
+                  success: function(result){
+                    if(result.success == true){
+                      $('#ids'+id).remove();
+                      Toast.fire({
+                        icon: 'success',
+                        title:  result.message
+                      })
+                    }
                   }
-                },error: function (error) {
-                  alert(error);
-                }
-            });
+               });
             }
           })
         });
 
 
 
-        $(document).on("change","#changeStatus",function() {
+        $(document).on("change","#changeStatus",function(e) {
+             e.preventDefault();
              let id = $(this).attr('data-id');
              
              if(this.checked){
@@ -149,7 +149,6 @@
 
 
         $(document).on("click","#chcekAll",function() {
-           
             if($(this).is(':checked',true)){
               $('.checkBox').prop('checked',true);
             }else{
@@ -160,17 +159,16 @@
 
 
         $(document).on("click",".checkBox",function() {
-           
           if($('.checkBox:checked').length == $('.checkBox').length){
               $('#chcekAll').prop('checked',true);
           }else{
-            $('#chcekAll').prop('checked',false);
+              $('#chcekAll').prop('checked',false);
           }
           
          });
 
-         $(document).on("click","#deleteAllSubCategory",function() {
-           
+         $(document).on("click","#deleteAllSubCategory",function(e) {
+            e.preventDefault();
             let idsArr = [];
 
             $('.checkBox:checked').each(function(){
@@ -178,7 +176,7 @@
             });
 
             if(idsArr.length < 1){
-              alert('please select atleast 1 item!!')
+              alert('please select atleast one item!!')
             }else{
 
               let strIds = idsArr.join(",");
@@ -198,19 +196,17 @@
                      method : "post",
                      data   : {strIds : strIds},
                      success: function(result){
-                        if(result.success == true){
                           if(result.success == true){
-                              // $('.checkBox:checked').each(function(){
-                              //   $(this).parents("tr").remove();
-                              // });
+                              $('.checkBox:checked').each(function(){
+                                $(this).parents("tr").remove();
+                              });
                               Toast.fire({
                                   icon: 'success',
                                   title: result.total+' '+result.message
                               })
-                              window.location.reload();
+                             
                             }
                         }
-                     }
                    });   
                 }
                 })  

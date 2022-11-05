@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Interfaces\ICategoryRepository;
 use App\Interfaces\ISubCategoryRepository;
 use App\Models\Category;
 use App\Models\SubCategory;
-use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
 class SubCategoryController extends Controller
@@ -55,7 +53,6 @@ class SubCategoryController extends Controller
             'status' => 'required'
          ]);
          $this->subCategoryRepo->subCategoryStore($request); 
-         Toastr::success('Sub-Categotry create successfuly', 'success', ["positionClass" => "toast-top-right",  "closeButton"=> true,   "progressBar"=> true,]);
          return redirect()->route('admin.sub-categories.index');
     }
 
@@ -80,8 +77,7 @@ class SubCategoryController extends Controller
     {
         $subCategory = $this->subCategoryRepo->myFind($id);
          if(!$subCategory){
-            flash('Sub-Category not found')->error();
-            return redirect()->back();
+           return redirect()->back();
         }
         $data['subCategory'] = $subCategory;
         $data['categories'] = Category::latest()->active()->get(); 
@@ -105,7 +101,6 @@ class SubCategoryController extends Controller
             'status' => 'required'
          ]);
          $this->subCategoryRepo->subCategoryUpdate($request,$id);
-         Toastr::success('Sub-Categotry Update successfuly', 'success', ["positionClass" => "toast-top-right",  "closeButton"=> true,   "progressBar"=> true,]); 
          return redirect()->route('admin.sub-categories.index');
     }
 
@@ -117,16 +112,11 @@ class SubCategoryController extends Controller
      */
     public function destroy($id)
     {
-        $subCategory = $this->subCategoryRepo->myDelete($id);
-        if(!$subCategory){
-            flash('Sub-Category not found')->error();
-            return redirect()->back();
-        }
-        $subCategory->delete();
-        return response()->json([
-             'success' =>true,
-             'message' => "sub-category delete successfully"
-        ]);
+       $this->subCategoryRepo->myDelete($id); 
+       return response()->json([
+        'success' =>true,
+        'message' => "SubCategory delete successfully"
+       ]);
     }
 
     public function subCategoryStatus(Request $request){

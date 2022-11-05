@@ -30,7 +30,7 @@
                     <div class="form-group row">
                         <label for="name_en" class="col-sm-3 col-form-label">Name English </label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control @error('name_en') is-invalid @enderror" value="{{ old('name_en')}}" name="name_en" id="name_en" placeholder="Category Name_EN">
+                            <input type="text" class="form-control @error('name_en') is-invalid @enderror" value="{{ old('name_en')}}" name="name_en" id="name_en" placeholder="Category Name English">
                             @error('name_en')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -40,7 +40,7 @@
                     <div class="form-group row">
                       <label for="name_bn" class="col-sm-3 col-form-label">Name Bangla </label>
                       <div class="col-sm-9">
-                          <input type="text" class="form-control @error('name_bn') is-invalid @enderror" value="{{ old('name_bn')}}" name="name_bn" id="name_bn" placeholder="Category Name_BN">
+                          <input type="text" class="form-control @error('name_bn') is-invalid @enderror" value="{{ old('name_bn')}}" name="name_bn" id="name_bn" placeholder="Category Name Bangla">
                           @error('name_bn')
                               <div class="text-danger">{{ $message }}</div>
                           @enderror

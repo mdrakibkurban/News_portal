@@ -31,15 +31,15 @@
                       <tr>
                         <th style="width: 10px"><input type="checkbox" id="checkAll"/></th>
                         <th style="width: 10px">#Id</th>
-                        <th>Name_En</th>
-                        <th>Name_Bn</th>
+                        <th>Name English</th>
+                        <th>Name Bangla</th>
                         <th style="width: 100px">Status</th>
                         <th style="width: 120px">Acton</th>   
                       </tr>
                     </thead>
                     <tbody>
                      @foreach ($categories as $category)
-                     <tr id="{{$category->id}}">
+                     <tr id="ids{{$category->id}}">
                         <td>
                           <input type="checkbox" name="ids" class="checkBox" 
                           data-id ="{{$category->id}}"/>
@@ -76,7 +76,8 @@
  
   <script>
     $( document ).ready(function() {
-        $(document).on("click","#categoryDelete",function() {
+        $(document).on("click","#categoryDelete",function(e) {
+                e.preventDefault();
                 let id = $(this).attr('data-id');
                   Swal.fire({
                   title: 'Are you sure?',
@@ -93,21 +94,20 @@
                     method : "delete",
                     success: function(result){
                       if(result.success == true){
+                        $('#ids'+id).remove();
                         Toast.fire({
                           icon: 'success',
                           title:  result.message
                         })
-                        window.location.reload();
                       }
-                    },error: function (error) {
-                      alert(error);
                     }
                 });
                 }
               })
         });
 
-        $(document).on("change","#categoryStatus",function() {
+        $(document).on("change","#categoryStatus",function(e) {
+            e.preventDefault();
             let id = $(this).data('id');
             if(this.checked){
                var status = 1;
@@ -150,14 +150,15 @@
         });
 
 
-        $(document).on("click","#deleteAllCategory",function() {
+        $(document).on("click","#deleteAllCategory",function(e) {
+             e.preventDefault()
              let idsArr = [];
              $('.checkBox:checked').each(function(){
                  idsArr.push($(this).attr('data-id'));
              });
 
              if(idsArr.length < 1){
-                alert('please select atleast 1 item!!');
+                alert('please select atleast one item!!');
              }else{
                 let strIds = idsArr.join(",");
 
@@ -176,15 +177,16 @@
                           method : "post",
                           data   : {strIds : strIds},
                           success: function(result){
-                              if(result.success == true){
-                                if(result.success == true){
-                                    Toast.fire({
-                                        icon: 'success',
-                                        title: result.total+' '+result.message
-                                    })
-                                    window.location.reload();
-                                  }
-                              }
+                            if(result.success == true){
+                               $('.checkBox:checked').each(function(){
+                                $(this).parents("tr").remove();
+                               });
+                                Toast.fire({
+                                    icon: 'success',
+                                    title: result.total+' '+result.message
+                                })
+                                    
+                              }   
                           }
                         });   
                       }

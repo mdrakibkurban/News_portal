@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Interfaces\ICategoryRepository;
 use App\Models\Category;
-use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
 
@@ -55,7 +54,6 @@ class CategoryController extends Controller
          ]);
 
          $this->categoryRepo->categoryStore($request);
-         Toastr::success('Categotry create successfuly', 'success', ["positionClass" => "toast-top-right",  "closeButton"=> true,   "progressBar"=> true,]);
          return redirect()->route('admin.categories.index');
     }
 
@@ -80,7 +78,6 @@ class CategoryController extends Controller
     {
         $category = $this->categoryRepo->myFind($id);
         if(!$category){
-            flash('Category not found')->error();
             return redirect()->back();
         }
         $data['category'] = $category;
@@ -102,7 +99,6 @@ class CategoryController extends Controller
             'status' => 'required'
         ]);    
         $this->categoryRepo->categoryUpdate($request,$id);
-        Toastr::success('Categotry Update successfuly', 'success', ["positionClass" => "toast-top-right",  "closeButton"=> true,   "progressBar"=> true,]);
         return redirect()->route('admin.categories.index');
     }
 
@@ -114,16 +110,11 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = $this->categoryRepo->myDelete($id);
-        if(!$category){
-            flash('Category not found')->error();
-            return redirect()->back();
-        }
-        $category->delete();
-        return response()->json([
-             'success' =>true,
-             'message' => "category delete successfully"
-        ]);
+       $this->categoryRepo->myDelete($id); 
+       return response()->json([
+        'success' =>true,
+        'message' => "Category delete successfully"
+       ]);  
     }
 
 

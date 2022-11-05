@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Interfaces\ISubCategoryRepository;
 use App\Models\SubCategory;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 
 class SubCategoryRepository extends BaseRepository implements ISubCategoryRepository
@@ -22,9 +23,9 @@ class SubCategoryRepository extends BaseRepository implements ISubCategoryReposi
             $subCategory->category_id = $request->category_id;
             $subCategory->status = $request->status;
             $subCategory->save();
-            flash('Sub-Category create successfully')->success();
+            Toastr::success('SubCategory Create successfuly', 'success', ["positionClass" => "toast-top-right",  "closeButton"=> true,   "progressBar"=> true,]);
         } catch (\Throwable $th) {
-            flash($th->getMessage())->error();
+            Toastr::error('somthing worng', 'success', ["positionClass" => "toast-top-right",  "closeButton"=> true,   "progressBar"=> true,]);
         }
     }   
     public function subCategoryUpdate($request ,$id){
@@ -36,9 +37,9 @@ class SubCategoryRepository extends BaseRepository implements ISubCategoryReposi
             $subCategory->category_id = $request->category_id;
             $subCategory->status = $request->status;
             $subCategory->save();
-            flash('Sub-Category Update successfully')->success();
+            Toastr::success('SubCategory Create successfuly', 'success', ["positionClass" => "toast-top-right",  "closeButton"=> true,   "progressBar"=> true,]);
         } catch (\Throwable $th) {
-            flash($th->getMessage())->error();
+            Toastr::error('somthing worng', 'success', ["positionClass" => "toast-top-right",  "closeButton"=> true,   "progressBar"=> true,]);
         }
     } 
     

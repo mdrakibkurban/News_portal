@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Interfaces\ICategoryRepository;
 use App\Models\Category;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 
 class CategoryRepository extends BaseRepository implements ICategoryRepository
@@ -21,9 +22,9 @@ class CategoryRepository extends BaseRepository implements ICategoryRepository
             $category->name_bn = $request->name_bn;
             $category->status = $request->status;
             $category->save();
-            flash('Category Create successfully')->success();
+            Toastr::success('Category create successfuly', 'success', ["positionClass" => "toast-top-right",  "closeButton"=> true,   "progressBar"=> true,]);
         } catch (\Throwable $th) {
-            flash($th->getMessage())->error();
+            Toastr::error('somthing worng', 'success', ["positionClass" => "toast-top-right",  "closeButton"=> true,   "progressBar"=> true,]);
         }
     } 
 
@@ -35,9 +36,9 @@ class CategoryRepository extends BaseRepository implements ICategoryRepository
                 $category->name_bn = $request->name_bn;
                 $category->status = $request->status;
                 $category->save();
-                flash('Category Update Successfully')->success();
+                Toastr::success('Category Update successfuly', 'success', ["positionClass" => "toast-top-right",  "closeButton"=> true,   "progressBar"=> true,]);
             } catch (\Throwable $th) {
-                flash($th->getMessage())->error();
+                Toastr::error('somthing worng', 'success', ["positionClass" => "toast-top-right",  "closeButton"=> true,   "progressBar"=> true,]);
             }
     }
 

@@ -2,20 +2,10 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DistrictController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use Illuminate\Support\Facades\Route;
-use PhpParser\Node\Expr\FuncCall;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');
@@ -40,6 +30,13 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
       Route::post('/sub-category/remove/items',[SubCategoryController::class,'subCategoryRemoveItems'])
      ->name('sub-category.remove.items');
      //sub-category route end
+
+
+     //districts route start
+     Route::resource('/districts',DistrictController::class);
+     Route::post('/district/remove/items',[DistrictController::class,'districtRemoveItems'])
+     ->name('district.remove.items');
+    //districts route end
    
 
 });

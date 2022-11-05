@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Interfaces\IBaseRepository;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Database\Eloquent\Model;
 
 class BaseRepository implements IBaseRepository
@@ -21,13 +22,20 @@ class BaseRepository implements IBaseRepository
     public function myFind($id){
         $data = $this->model->find($id);
         if(!$data){
-           return null;
+            Toastr::error('Data not found', 'success', ["positionClass" => "toast-top-right",  "closeButton"=> true,   "progressBar"=> true,]);
+            return null;    
         }else{
             return $data;
         }    
     }
 
     public function myDelete($id){
-        return $this->model->find($id);
+        $data = $this->model->find($id);
+        if($data){
+            $data->delete(); 
+        }else{
+            Toastr::error('Data not found', 'success', ["positionClass" => "toast-top-right",  "closeButton"=> true,   "progressBar"=> true,]);
+        }   
+        
     }
 }
