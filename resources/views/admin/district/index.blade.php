@@ -20,7 +20,7 @@
         <div class="card">
             <div class="card-header">
               <h3 class="card-title mt-2">Manage District</h3>
-              <button class="btn btn-danger ml-3" id="deleteAllDistrict">Delete All</button>
+              <button class="btn btn-danger ml-3" id="deleteItems">Delete All</button>
               <div class="card-tools">
                   <a href="{{ route('admin.districts.create')}}" class="btn btn-primary">Add District</a>
               </div>
@@ -122,7 +122,7 @@
              }
          });
           
-         $(document).on("click","#deleteAllDistrict",function(e) {
+         $(document).on("click","#deleteItems",function(e) {
             e.preventDefault();
             let idsArr = [];
 

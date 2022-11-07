@@ -68,12 +68,12 @@
                     </a>
                   </li>
     
-                  {{-- <li class="nav-item">
-                    <a href="{{ route('admin.sub-categories.index')}}" class="nav-link {{ request()->is('*/sub-categories*') ? 'active' : ' '}}">
+                  <li class="nav-item">
+                    <a href="{{ route('admin.sub-districts.index')}}" class="nav-link {{ request()->is('*/sub-districts*') ? 'active' : ' '}}">
                       <i class="fas fa-list nav-icon"></i>
-                      <p>Sub Category</p>
+                      <p>Sub District</p>
                     </a>
-                  </li> --}}
+                  </li>
                 </ul>
               </li>
         

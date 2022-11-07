@@ -20,7 +20,7 @@
         <div class="card">
             <div class="card-header">
               <h3 class="card-title mt-2">Manage Sub-Category</h3>
-              <button class="btn btn-danger ml-3" id="deleteAllSubCategory">Delete All</button>
+              <button class="btn btn-danger ml-3" id="deleteItems">Delete All</button>
               <div class="card-tools">
                   <a href="{{ route('admin.sub-categories.create')}}" class="btn btn-primary">Add Sub-Category</a>
               </div>
@@ -153,8 +153,7 @@
               $('.checkBox').prop('checked',true);
             }else{
               $('.checkBox').prop('checked',false);
-            }
-            
+            }   
         });
 
 
@@ -167,7 +166,7 @@
           
          });
 
-         $(document).on("click","#deleteAllSubCategory",function(e) {
+         $(document).on("click","#deleteItems",function(e) {
             e.preventDefault();
             let idsArr = [];
 
@@ -209,7 +208,7 @@
                         }
                    });   
                 }
-                })  
+              })  
             }
               
           });

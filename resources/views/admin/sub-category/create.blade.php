@@ -97,16 +97,5 @@
   </div>
 @endsection
 
-@push('css')
-<style>
-   .select2-selection {
-    padding-bottom: 28px!important;
-  }
-  .select2-selection__arrow{
-    padding-bottom: 35px!important;
-  }
-  
-  </style>
-   
-@endpush
+
 

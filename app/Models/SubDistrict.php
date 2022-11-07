@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class SubDistrict extends Model
 {
     use HasFactory;
+    public function district(){
+        return $this->belongsTo(District::class);
+    }
 }

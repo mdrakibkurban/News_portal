@@ -118,8 +118,8 @@ class CategoryController extends Controller
     }
 
 
-    public function categoryStatus(Request $request){
-        $this->categoryRepo->categoryStatus($request);
+    public function status(Request $request){
+        $this->categoryRepo->myStatus($request);
         return response()->json([
             'success' =>true,
             'message' => "category status"

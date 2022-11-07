@@ -42,10 +42,4 @@ class CategoryRepository extends BaseRepository implements ICategoryRepository
             }
     }
 
-    public function categoryStatus($request){
-          $category = $this->myFind($request->id);
-          $category->status = $request->status;
-          $category->save();
-    }
-
 }

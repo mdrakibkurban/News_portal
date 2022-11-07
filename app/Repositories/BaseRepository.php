@@ -38,4 +38,10 @@ class BaseRepository implements IBaseRepository
         }   
         
     }
+
+    public function myStatus($request){
+        $data = $this->model->find($request->id);
+        $data->status = $request->status;
+        $data->save();     
+    }
 }

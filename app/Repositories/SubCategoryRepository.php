@@ -43,9 +43,4 @@ class SubCategoryRepository extends BaseRepository implements ISubCategoryReposi
         }
     } 
     
-    public function subCategoryStatus($request){
-        $category = $this->myFind($request->id);
-        $category->status = $request->status;
-        $category->save();
-    }
 }

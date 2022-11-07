@@ -119,8 +119,8 @@ class SubCategoryController extends Controller
        ]);
     }
 
-    public function subCategoryStatus(Request $request){
-        $this->subCategoryRepo->subCategoryStatus($request);
+    public function status(Request $request){
+        $this->subCategoryRepo->myStatus($request);
         return response()->json([
             'success' =>true,
             'message' => "sub-category status"
