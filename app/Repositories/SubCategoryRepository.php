@@ -33,7 +33,6 @@ class SubCategoryRepository extends BaseRepository implements ISubCategoryReposi
             $subCategory = $this->myFind($id);
             $subCategory->name_en = $request->name_en;
             $subCategory->name_bn = $request->name_bn;
-            $subCategory->user_id = Auth::id();
             $subCategory->category_id = $request->category_id;
             $subCategory->status = $request->status;
             $subCategory->save();

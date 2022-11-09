@@ -11,6 +11,8 @@
 <link rel="stylesheet" href="{{asset("/admin/dist/css/adminlte.min.css")}}">
  <!-- Select2 -->
 <link rel="stylesheet" href="{{asset("/admin/plugins/select2/css/select2.min.css")}}">
+  <!-- summernote -->
+<link rel="stylesheet" href="{{asset("/admin/plugins/summernote/summernote-bs4.min.css")}}">
 
 <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 

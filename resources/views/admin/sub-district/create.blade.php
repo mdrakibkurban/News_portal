@@ -50,7 +50,7 @@
 
 
                     <div class="form-group row">
-                      <label for="name" class="col-sm-3 col-form-label">Choose istrict</label>
+                      <label for="name" class="col-sm-3 col-form-label">Choose District</label>
                       <div class="col-sm-9">
                           <select name="district_id" value="{{ old('district_id')}}" class="form-control @error('district_id') is-invalid @enderror" id="select2">
                             <option value="">-- Choose Category --</option>

@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Interfaces\IBaseRepository;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class BaseRepository implements IBaseRepository
 {
@@ -31,6 +32,9 @@ class BaseRepository implements IBaseRepository
 
     public function myDelete($id){
         $data = $this->model->find($id);
+        if($data->image){
+            Storage::delete('public/news_images/'.$data->image); 
+        }
         if($data){
             $data->delete(); 
         }else{

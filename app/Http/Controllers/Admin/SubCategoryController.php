@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Interfaces\ISubCategoryRepository;
 use App\Models\Category;
+use App\Models\News;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 
@@ -47,10 +48,10 @@ class SubCategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name_en'=>'required|string|unique:sub_categories',
-            'name_bn'=>'required|string|unique:sub_categories',
-            'category_id'=>'required',
-            'status' => 'required'
+            'name_en'     =>'required|string|unique:sub_categories',
+            'name_bn'     =>'required|string|unique:sub_categories',
+            'category_id' =>'required',
+            'status'      => 'required'
          ]);
          $this->subCategoryRepo->subCategoryStore($request); 
          return redirect()->route('admin.sub-categories.index');
@@ -95,10 +96,10 @@ class SubCategoryController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name_en'=>'required|string|unique:sub_categories,name_en,'.$id,
-            'name_bn'=>'required|string|unique:sub_categories,name_bn,'.$id,
-            'category_id'=>'required',
-            'status' => 'required'
+            'name_en'     =>'required|string|unique:sub_categories,name_en,'.$id,
+            'name_bn'     =>'required|string|unique:sub_categories,name_bn,'.$id,
+            'category_id' =>'required',
+            'status'      => 'required'
          ]);
          $this->subCategoryRepo->subCategoryUpdate($request,$id);
          return redirect()->route('admin.sub-categories.index');
@@ -128,7 +129,7 @@ class SubCategoryController extends Controller
     }
 
     public function subCategoryRemoveItems(Request $request){
-        $subCategory = SubCategory::whereIn('id',explode("," ,$request->strIds));
+        $subCategory = News::whereIn('id',explode("," ,$request->strIds));
         $total   = $subCategory->count();
         $subCategory->delete();
         return response()->json([

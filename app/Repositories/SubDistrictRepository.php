@@ -32,7 +32,6 @@ class SubDistrictRepository extends BaseRepository implements ISubDistrictReposi
     public function subDistrictUpdate($request,$id){
         try {
             $subDistrict = $this->myFind($id);
-            $subDistrict->user_id = Auth::id();
             $subDistrict-> subdistrict_en = $request->subdistrict_en;
             $subDistrict-> subdistrict_bn = $request->subdistrict_bn;
             $subDistrict-> district_id    = $request->district_id;

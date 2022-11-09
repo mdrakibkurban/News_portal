@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DistrictController;
+use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\SubDistrictController;
 use Illuminate\Support\Facades\Route;
@@ -43,6 +44,15 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
      Route::resource('/sub-districts',SubDistrictController::class);
      Route::post('/sub-district/remove/items',[SubDistrictController::class,'SubdistrictRemoveItems'])
      ->name('sub-district.remove.items');
+    //districts route end
+
+    //districts route start
+    Route::resource('/news',NewsController::class);
+    Route::post('/get/subcat',[NewsController::class,'getSubCat'])->name('get.subcat');
+    Route::post('/get/subdist',[NewsController::class,'getSubDist'])->name('get.subdist');
+    Route::get('/news-status',[NewsController::class,'status'])->name('news.status');
+    Route::post('/news/remove/items',[NewsController::class,'newsRemoveItems'])
+    ->name('news.remove.items');
     //districts route end
    
 

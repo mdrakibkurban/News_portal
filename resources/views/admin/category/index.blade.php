@@ -31,8 +31,8 @@
                       <tr>
                         <th style="width: 10px"><input type="checkbox" id="checkAll"/></th>
                         <th style="width: 10px">#Id</th>
-                        <th>Name English</th>
-                        <th>Name Bangla</th>
+                        <th>Category English</th>
+                        <th>Category Bangla</th>
                         <th style="width: 100px">Status</th>
                         <th style="width: 120px">Acton</th>   
                       </tr>

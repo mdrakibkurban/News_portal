@@ -76,7 +76,26 @@
                   </li>
                 </ul>
               </li>
-        
+
+              <li class="nav-item menu-is-opening menu-open">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-file"></i>
+                  <p>
+                    News
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview" style="display: block;">
+    
+                  <li class="nav-item">
+                    <a href="{{ route('admin.news.index')}}" class="nav-link {{ request()->is('*/news*') ? 'active' : ' '}}">
+                      <i class="fas fa-list nav-icon"></i>
+                      <p>News</p>
+                    </a>
+                  </li>
+    
+                </ul>
+              </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

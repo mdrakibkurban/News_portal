@@ -30,7 +30,6 @@ class DistrictRepository extends BaseRepository implements IDistrictRepository
     public function districtUpdate($request ,$id){
          try {
             $district = $this->myFind($id);
-            $district->user_id = Auth::id();
             $district->district_en = $request->district_en;
             $district->district_bn = $request->district_bn;
             $district->save();

@@ -32,8 +32,8 @@
                       <tr>
                         <th><input type="checkbox" id="chcekAll"></th>
                         <th style="width: 10px">#Id</th>
-                        <th>Name English</th>
-                        <th>Name Bangla</th>
+                        <th>SubDistrict English</th>
+                        <th>SubDistrict Bangla</th>
                         <th>District Name</th>
                         <th style="width: 120px">Acton</th>
                         

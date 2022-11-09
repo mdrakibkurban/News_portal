@@ -31,7 +31,6 @@ class CategoryRepository extends BaseRepository implements ICategoryRepository
     public function categoryUpdate($request,$id){   
             try {
                 $category = $this->myFind($id);
-                $category->user_id = Auth::id();
                 $category->name_en = $request->name_en;
                 $category->name_bn = $request->name_bn;
                 $category->status = $request->status;

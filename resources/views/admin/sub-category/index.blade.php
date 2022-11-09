@@ -33,8 +33,8 @@
                           <input type="checkbox" id="chcekAll">
                         </th>
                         <th style="width: 10px">#Id</th>
-                        <th>Name English</th>
-                        <th>Name Bangla</th>
+                        <th>SubCategory English</th>
+                        <th>SubCategory Bangla</th>
                         <th>Category Name</th>
                         <th style="width: 100px">Status</th>
                         <th style="width: 120px">Acton</th>

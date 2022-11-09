@@ -75,8 +75,8 @@
                             <div class="custom-control custom-radio d-inline mr-2">
                                 <input class="custom-control-input" type="radio" id="active" value="1" name="status" {{(old('status') == '1') ? 'checked' : ''}}>
                                 <label for="active" class="custom-control-label">Active</label>
-                                </div>
-                                <div class="custom-control custom-radio d-inline">
+                            </div>
+                            <div class="custom-control custom-radio d-inline">
                                 <input class="custom-control-input" type="radio" id="inactive"  value="0" name="status" {{(old('status') == '0') ? 'checked' : ''}}>
                                 <label for="inactive" class="custom-control-label">Inactive</label>
                             </div>
@@ -85,6 +85,7 @@
                             @enderror
                         </div>
                     </div>
+
                 </div>
     
                 <div class="card-footer">

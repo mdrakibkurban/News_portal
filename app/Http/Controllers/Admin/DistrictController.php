@@ -48,8 +48,8 @@ class DistrictController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'district_en'=>'required|string|unique:districts',
-            'district_bn'=>'required|string|unique:districts',
+            'district_en' =>'required|string|unique:districts',
+            'district_bn' =>'required|string|unique:districts',
          ]);
 
          $this->districtRepo->districtStore($request);
@@ -93,8 +93,8 @@ class DistrictController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'district_en'=>'required|string|unique:districts,district_en,'.$id,
-            'district_bn'=>'required|string|unique:districts,district_bn,'.$id,
+            'district_en' =>'required|string|unique:districts,district_en,'.$id,
+            'district_bn' =>'required|string|unique:districts,district_bn,'.$id,
          ]);
          
          $this->districtRepo->districtUpdate($request,$id);
