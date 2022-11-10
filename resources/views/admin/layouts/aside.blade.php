@@ -93,7 +93,46 @@
                       <p>News</p>
                     </a>
                   </li>
-    
+                </ul>
+              </li>
+
+
+              <li class="nav-item menu-is-opening menu-open">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fa fa-cog"></i>
+                  <p>
+                    Setting
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview" style="display: block;">
+                  <li class="nav-item">
+                    <a href="{{ route('admin.social')}}" class="nav-link {{ request()->is('*/social*') ? 'active' : ' '}}">
+                      <i class="fa fa-cog nav-icon"></i>
+                      <p>Social Setting</p>
+                    </a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a href="{{ route('admin.seo')}}" class="nav-link {{ request()->is('*/seo*') ? 'active' : ' '}}">
+                      <i class="fa fa-cog nav-icon"></i>
+                      <p>Seo Setting</p>
+                    </a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a href="{{ route('admin.namaz')}}" class="nav-link {{ request()->is('*/namaz*') ? 'active' : ' '}}">
+                      <i class="fa fa-cog nav-icon"></i>
+                      <p>Prayer Time</p>
+                    </a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a href="{{ route('admin.livetv')}}" class="nav-link {{ request()->is('*/livetv*') ? 'active' : ' '}}">
+                      <i class="fa fa-cog nav-icon"></i>
+                      <p>LiveTv Setting</p>
+                    </a>
+                  </li>
                 </ul>
               </li>
         </ul>

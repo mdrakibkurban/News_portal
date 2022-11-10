@@ -19,7 +19,11 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             SubCategorySeeder::class,
             DistrictSeeder::class,
-            SubDistrictSeeder::class
+            SubDistrictSeeder::class,
+            SocialSeeder::class,
+            SeoSeeder::class,
+            NamazSeeder::class,
+            LiveTvSeeder::class
         ]);
     }
 }

@@ -4,8 +4,10 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DistrictController;
 use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\SubDistrictController;
+use App\Models\Social;
 use Illuminate\Support\Facades\Route;
 
 
@@ -54,6 +56,28 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
     Route::post('/news/remove/items',[NewsController::class,'newsRemoveItems'])
     ->name('news.remove.items');
     //districts route end
+
+    // setting route
+    // Social setting route
+    Route::get('/social/setting',[SettingController::class,'socialSetting'])->name('social');
+    Route::put('/social/setting/update/{id}',[SettingController::class,'socialSettingUpdate'])
+    ->name('social.update');
+
+    // Seo setting route
+    Route::get('/seo/setting',[SettingController::class,'seoSetting'])->name('seo');
+    Route::put('/seo/setting/update/{id}',[SettingController::class,'seoSettingUpdate'])
+    ->name('seo.update');
+
+   // Prayer time route
+    Route::get('/namaz/time',[SettingController::class,'namazTime'])->name('namaz');
+    Route::put('/namaz/time/update/{id}',[SettingController::class,'namazTimeUpdate'])
+    ->name('namaz.update');
+
+      // Live tv route
+    Route::get('/livetv/setting',[SettingController::class,'livetvSetting'])->name('livetv');
+    Route::put('/livetv/setting/update/{id}',[SettingController::class,'livetvSettingUpdate'])
+      ->name('livetv.update');
+    Route::post('/livetv/status',[SettingController::class,'status'])->name('livetv.status');
    
 
 });
