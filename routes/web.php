@@ -4,9 +4,13 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DistrictController;
 use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\NoticeController;
+use App\Http\Controllers\Admin\PhotoGalleryController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\SubDistrictController;
+use App\Http\Controllers\Admin\VedioGalleryController;
+use App\Http\Controllers\Admin\WebsiteLinkController;
 use App\Models\Social;
 use Illuminate\Support\Facades\Route;
 
@@ -78,7 +82,29 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
     Route::put('/livetv/setting/update/{id}',[SettingController::class,'livetvSettingUpdate'])
       ->name('livetv.update');
     Route::post('/livetv/status',[SettingController::class,'status'])->name('livetv.status');
-   
+
+
+    // notice route
+    Route::resource('/notices',NoticeController::class);
+    Route::post('/notice/remove/items',[NoticeController::class,'noticeRemoveItems'])
+    ->name('notice.remove.items');
+    Route::get('/notice-status',[NoticeController::class,'status'])
+    ->name('notice.status');
+
+    // WebsiteLink route
+    Route::resource('/websites',WebsiteLinkController::class);
+    Route::post('/website/remove/items',[WebsiteLinkController::class,'websiteRemoveItems'])
+    ->name('website.remove.items');
+
+    // PhotoGallery route
+    Route::resource('/photos',PhotoGalleryController::class);
+    Route::post('/photo/remove/items',[PhotoGalleryController::class,'photoRemoveItems'])
+    ->name('photo.remove.items');
+
+    // VedioGallery route
+    Route::resource('/vedios',VedioGalleryController::class);
+    Route::post('/vedio/remove/items',[VedioGalleryController::class,'vedioRemoveItems'])
+    ->name('vedio.remove.items');
 
 });
 require __DIR__.'/auth.php';

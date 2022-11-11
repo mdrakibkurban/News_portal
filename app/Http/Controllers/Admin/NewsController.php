@@ -153,12 +153,11 @@ class NewsController extends Controller
             $sl++;
         }
        
-            $success = $sl > 0; 
-
-            return response()->json([
-                 'success'=> $success,
-                 'total' => $sl,
-                 'message' => 'News delete successfully',
-            ],200);
+        $success = $sl > 0; 
+        return response()->json([
+            'success'=> $success,
+            'total' => $sl,
+            'message' => 'News delete successfully',
+        ],200);
    }
 }

@@ -133,6 +133,47 @@
                       <p>LiveTv Setting</p>
                     </a>
                   </li>
+
+                  <li class="nav-item">
+                    <a href="{{ route('admin.notices.index')}}" class="nav-link {{ request()->is('*/notices*') ? 'active' : ' '}}">
+                      <i class="fa fa-cog nav-icon"></i>
+                      <p>Notice Setting</p>
+                    </a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a href="{{ route('admin.websites.index')}}" class="nav-link {{ request()->is('*/websites*') ? 'active' : ' '}}">
+                      <i class="fa fa-cog nav-icon"></i>
+                      <p>Website Link</p>
+                    </a>
+                  </li>
+
+                </ul>
+              </li>
+
+              <li class="nav-item menu-is-opening menu-open">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-file"></i>
+                  <p>
+                    Gallery
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview" style="display: block;">
+    
+                  <li class="nav-item">
+                    <a href="{{ route('admin.photos.index')}}" class="nav-link {{ request()->is('*/photos*') ? 'active' : ' '}}">
+                      <i class="fas fa-list nav-icon"></i>
+                      <p>Photo Gallery</p>
+                    </a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a href="{{ route('admin.vedios.index')}}" class="nav-link {{ request()->is('*/vedios*') ? 'active' : ' '}}">
+                      <i class="fas fa-list nav-icon"></i>
+                      <p>Vedio Gallery</p>
+                    </a>
+                  </li>
                 </ul>
               </li>
         </ul>

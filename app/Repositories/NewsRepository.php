@@ -60,9 +60,10 @@ class NewsRepository extends BaseRepository implements INewsRepository
 
     public function newsUpdate($request,$id){
      
-
-        try {
             $news = $this->myFind($id);
+            if(!$news){
+                return false;
+            }
 
             if($request->hasFile('image')){
                 if ($news->image) {
@@ -77,6 +78,7 @@ class NewsRepository extends BaseRepository implements INewsRepository
                 $file_path = $news->image;
             }
 
+        try {
             $news->category_id        = $request->category_id;
             $news->subcategory_id     = $request->subcategory_id;
             $news->district_id        = $request->district_id;
