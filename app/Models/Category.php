@@ -13,6 +13,10 @@ class Category extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function subcategories(){
+        return $this->hasMany(SubCategory::class);
+    }
+
     public function scopeActive($query)
     {
         $query->where('status', 1);

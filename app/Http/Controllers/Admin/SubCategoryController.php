@@ -129,7 +129,7 @@ class SubCategoryController extends Controller
     }
 
     public function subCategoryRemoveItems(Request $request){
-        $subCategory = News::whereIn('id',explode("," ,$request->strIds));
+        $subCategory = SubCategory::whereIn('id',explode("," ,$request->strIds));
         $total   = $subCategory->count();
         $subCategory->delete();
         return response()->json([

@@ -20,7 +20,7 @@
         <div class="card">
             <div class="card-header">
               <h3 class="card-title mt-2">Manage Sub-Category</h3>
-              <button class="btn btn-danger ml-3" id="deleteItems">Delete All</button>
+              <button class="btn btn-danger ml-3" id="deleteSubcategoryItems">Delete All</button>
               <div class="card-tools">
                   <a href="{{ route('admin.sub-categories.create')}}" class="btn btn-primary">Add Sub-Category</a>
               </div>
@@ -166,7 +166,7 @@
           
          });
 
-         $(document).on("click","#deleteItems",function(e) {
+         $(document).on("click","#deleteSubcategoryItems",function(e) {
             e.preventDefault();
             let idsArr = [];
 

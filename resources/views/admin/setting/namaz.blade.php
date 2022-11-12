@@ -26,49 +26,103 @@
                 @method('put')
                 <div class="card-body">
 
-                    <div class="form-group row">
-                      <label for="fajr" class="col-sm-3 col-form-label">Fajr</label>
-                      <div class="col-sm-9">
-                          <input type="text" class="form-control" value="{{ $namaz->fajr }}" name="fajr" id="fajr">
-                      </div>
-                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="fajr_en">Fajr English</label>
+                                <input type="text" class="form-control" value="{{ $namaz->fajr_en }}" name="fajr_en" id="fajr_en">
+                            </div>
+                        </div>
 
-                    <div class="form-group row">
-                        <label for="johr" class="col-sm-3 col-form-label">Johr</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" value="{{ $namaz->johr }}" name="johr" id="johr">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="fajr_bn">Fajr Bangla</label>
+                                <input type="text" class="form-control" value="{{ $namaz->fajr_bn }}" name="fajr_bn" id="fajr_bn">
+                            </div>
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label for="youtube" class="col-sm-3 col-form-label">Asor</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" value="{{ $namaz->asor }}" name="asor" id="asor">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="johr_en">Johr English</label>
+                                <input type="text" class="form-control" value="{{ $namaz->johr_en }}" name="johr_en" id="johr_en">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="johr_bn">Johr Bangla</label>
+                                <input type="text" class="form-control" value="{{ $namaz->johr_bn }}" name="johr_bn" id="johr_bn">
+                            </div>
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label for="magrib" class="col-sm-3 col-form-label">Magrib</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" value="{{ $namaz->magrib }}" name="magrib" id="magrib">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="asor_en">Asor English</label>
+                                <input type="text" class="form-control" value="{{ $namaz->asor_en }}" name="asor_en" id="asor_en">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="asor_bn">Asor Bangla</label>
+                                <input type="text" class="form-control" value="{{ $namaz->asor_bn }}" name="asor_bn" id="asor_bn">
+                            </div>
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label for="esha" class="col-sm-3 col-form-label">Esha</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" value="{{ $namaz->esha }}" name="esha" id="esha">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="magrib_en">Magrib English</label>
+                                <input type="text" class="form-control" value="{{ $namaz->magrib_en }}" name="magrib_en" id="magrib_en">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="magrib_bn">Magrib Bangla</label>
+                                <input type="text" class="form-control" value="{{ $namaz->magrib_bn }}" name="magrib_bn" id="magrib_bn">
+                            </div>
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label for="jummah" class="col-sm-3 col-form-label">Jummah</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" value="{{ $namaz->jummah }}" name="jummah" id="jummah">
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="esha_en">Esha English</label>
+                                <input type="text" class="form-control" value="{{ $namaz->esha_en }}" name="esha_en" id="esha_en">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="esha_bn">Esha Bangla</label>
+                                <input type="text" class="form-control" value="{{ $namaz->esha_bn }}" name="esha_bn" id="esha_bn">
+                            </div>
                         </div>
                     </div>
+                    
+                      
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="jummah_en">Jummah English</label>
+                                <input type="text" class="form-control" value="{{ $namaz->jummah_en }}" name="jummah_en" id="jummah_en">
+                            </div>
+                        </div>
 
-
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="jummah_bn">Jummah Bangla</label>
+                                <input type="text" class="form-control" value="{{ $namaz->jummah_bn }}" name="jummah_bn" id="jummah_bn">
+                            </div>
+                        </div>
+                    </div>
                     
                 </div>
     

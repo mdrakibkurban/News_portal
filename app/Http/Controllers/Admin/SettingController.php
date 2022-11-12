@@ -58,12 +58,18 @@ class SettingController extends Controller
 
     public function namazTimeUpdate(Request $request, $id){
          $namaz          = Namaz::find($id);
-         $namaz->fajr    = $request->fajr;
-         $namaz->johr    = $request->johr;
-         $namaz->asor    = $request->asor;
-         $namaz->magrib  = $request->magrib;
-         $namaz->esha    = $request->esha;
-         $namaz->jummah  = $request->jummah;
+         $namaz->fojor_en    = $request->fojor_en;
+         $namaz->johr_en    = $request->johr_en;
+         $namaz->asor_en    = $request->asor_en;
+         $namaz->magrib_en  = $request->magrib_en;
+         $namaz->esha_en    = $request->esha_en;
+         $namaz->jummah_en  = $request->jummah_en;
+         $namaz->fojor_bn   = $request->fojor_bn;
+         $namaz->johr_bn    = $request->johr_bn;
+         $namaz->asor_bn    = $request->asor_bn;
+         $namaz->magrib_bn  = $request->magrib_bn;
+         $namaz->esha_bn    = $request->esha_bn;
+         $namaz->jummah_bn  = $request->jummah_bn;
          $namaz->save();
          Toastr::success('Prayer time update successfuly', 'success', ["positionClass" => "toast-top-right",  "closeButton"=> true,   "progressBar"=> true,]);
          return redirect()->back();

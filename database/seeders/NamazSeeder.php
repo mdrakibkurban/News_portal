@@ -16,12 +16,18 @@ class NamazSeeder extends Seeder
     public function run()
     {
         Namaz::create([
-            'fajr'    => '5:00',
-            'johr'    => '1:30', 
-            'asor'    => '4:00',
-            'magrib'  => '5:10',
-            'esha'    => '7:30',
-            'jummah'  => '1:30'
+            'fojor_en'    => '5:00 AM',
+            'johr_en'    => '1:30 PM', 
+            'asor_en'    => '4:00 PM',
+            'magrib_en'  => '5:10 PM',
+            'esha_en'    => '7:30 PM',
+            'jummah_en'  => '1:30 PM',
+            'fojor_bn'    => '৫:০০ পূর্বাহ্ন',
+            'johr_bn'    => '১:৩০ অপরাহ্ন', 
+            'asor_bn'    => '৪:০০ অপরাহ্ন',
+            'magrib_bn'  => '৫:০০ অপরাহ্ন',
+            'esha_bn'    => '৭:৩০ অপরাহ্ন',
+            'jummah_bn'  => '১:৩০ অপরাহ্ন',
         ]);
     }
 }
