@@ -25,7 +25,6 @@ class NewsUpdateRequest extends FormRequest
     {
         return [
             'category_id' => 'required',
-            'district_id' => 'required',
             'news_en'     => 'required',
             'news_bn'     => 'required',
             'des_en'     => 'required',

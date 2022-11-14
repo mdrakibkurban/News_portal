@@ -116,7 +116,7 @@
                   <li class="nav-item">
                     <a href="{{ route('admin.seo')}}" class="nav-link {{ request()->is('*/seo*') ? 'active' : ' '}}">
                       <i class="fa fa-cog nav-icon"></i>
-                      <p>Seo Setting</p>
+                      <p>SEO Setting</p>
                     </a>
                   </li>
 

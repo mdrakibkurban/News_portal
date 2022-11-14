@@ -9,7 +9,14 @@
         <meta name="description" content="{{ $seo->meta_description }}">
         <meta name="google_analytics" content="{{ $seo->google_analytics }}">
         <meta name="alexa_analytics" content="{{ $seo->alexa_analytics }}">
-        <title>{{ $seo->meta_title }}</title>
+        <title>
+            @if(session()->get('lang') == 'english')
+             {{ $seo->meta_title }}
+			@else
+            ডেইলি নিউস
+			@endif
+         
+        </title>
 
         <link href="{{asset("/frontend/assets/css/bootstrap.min.css")}}" rel="stylesheet">
         <link href="{{asset("/frontend/assets/css/menu.css")}}" rel="stylesheet">

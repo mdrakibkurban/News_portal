@@ -42,7 +42,7 @@
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label for="news_en">News English</label>
+                            <label for="news_en">News Bangla</label>
                             <input type="text" class="form-control" value="{{ $news->news_bn }}" name="news_bn" id="news_bn" placeholder="News Bangla">
                             @error('news_bn')
                             <div class="text-danger">{{ $message }}</div>
@@ -122,7 +122,7 @@
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label for="tags_bn">News Tag English</label>
+                            <label for="tags_bn">News Tag Bangla</label>
                             <input type="text" class="form-control" value="{{ $news->tags_bn }}" name="tags_bn" id="tags_bn" placeholder="News Tag Bangla">
                         </div>
                     </div>
@@ -189,30 +189,40 @@
                    <h4>Extra Option</h4>
 
                    <div class="row">
-                      <div class="col-md-6">
+                      <div class="col-md-4 mt-3">
                         <div class="custom-control custom-checkbox">
                             <input class="custom-control-input" type="checkbox" id="headline"  name="headline" value="1" {{ $news->headline == 1 ? 'checked' : ''}}>
                             <label for="headline" class="custom-control-label">HeadLine</label>
                            </div>
         
-                           <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox" id="first_section"  name="first_section" value="1" {{ $news->first_section == 1 ? 'checked' : ''}}>
-                            <label for="first_section" class="custom-control-label">First Section</label>
-                           </div>
                       </div>
 
-
-                      <div class="col-md-6">
+                      <div class="col-md-4">
                         <div class="custom-control custom-checkbox">
                             <input class="custom-control-input" type="checkbox" id="first_section_big"  name="first_section_big" value="1"
                             {{ $news->first_section_big == 1 ? 'checked' : ''}}>
                             <label for="first_section_big" class="custom-control-label">First Section Big</label>
-                           </div>
+                        </div>
         
                            <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox" id="others_section"  name="others_section" value="1" {{ $news->others_section == 1 ? 'checked' : ''}}>
-                            <label for="others_section" class="custom-control-label">Others Section</label>
+                            <input class="custom-control-input" type="checkbox" id="first_section_small"  name="first_section_small" value="1" {{ $news->first_section_small == 1 ? 'checked' : ''}}>
+                            <label for="first_section_small" class="custom-control-label">First Section</label>
                            </div>
+                      </div>
+
+
+                      <div class="col-md-4">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input" type="checkbox" id="others_section_big"  name="others_section_big" value="1"
+                                {{ $news->others_section_big == 1 ? 'checked' : ''}}>
+                                <label for="others_section_big" class="custom-control-label">Others Section Big</label>
+                           </div>
+
+                           <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input" type="checkbox" id="others_section_small"  name="others_section_small" value="1" {{ $news->others_section_small == 1 ? 'checked' : ''}}>
+                                <label for="others_section_small" class="custom-control-label">Others Section Small</label>
+                           </div>
+                         
                       </div>
                    </div>
 

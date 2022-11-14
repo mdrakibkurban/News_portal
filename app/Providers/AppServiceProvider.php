@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Category;
 use App\Models\LiveTv;
 use App\Models\Namaz;
+use App\Models\News;
 use App\Models\Seo;
 use App\Models\Social;
 use App\Models\SubCategory;
@@ -40,6 +41,8 @@ class AppServiceProvider extends ServiceProvider
             View::share('namaz', Namaz::first());
             View::share('categories', Category::latest()->active()->take(8)->get());
             View::share('subcategories', SubCategory::latest()->active()->get());
+            View::share('headlines', News::latest()->where('headline', 1)->get());
+            
         });
 
         Paginator::useBootstrap();

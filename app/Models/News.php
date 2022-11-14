@@ -27,4 +27,9 @@ class News extends Model
     public function subdistrict(){
         return $this->belongsTo(SubDistrict::class);
     }
+
+    public function scopeActive($query)
+    {
+        $query->where('status', 1);
+    }
 }

@@ -4,8 +4,12 @@
         <div class="top-footer">
             <div class="row">
                 <div class="col-md-3 col-sm-4">
-                    <div class="foot-logo">
-                        <img src="{{asset("/frontend/assets/img/demo_logo.png")}}" style="height: 50px;" />
+                    <div class="foot-logo"  style="margin-top: 15px;font-size:25px;">
+                        @if(session()->get('lang') == 'english')
+                        Daily News
+                        @else
+                        ডেইলি নিউস
+                        @endif
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-4">

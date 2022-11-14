@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->foreignId('subcategory_id')->nullable()->constrained('sub_categories')
             ->onDelete('cascade');
-            $table->foreignId('district_id')->constrained('districts')->onDelete('cascade');
+            $table->foreignId('district_id')->nullable()->constrained('districts')->onDelete('cascade');
             $table->foreignId('subdistrict_id')->nullable()->constrained('sub_districts')
             ->onDelete('cascade');
             $table->string('news_en');
@@ -31,9 +31,10 @@ return new class extends Migration
             $table->string('tags_bn')->nullable();
             $table->tinyInteger('status');
             $table->integer('headline')->nullable();
-            $table->integer('first_section')->nullable();
             $table->integer('first_section_big')->nullable();
-            $table->integer('others_section')->nullable();
+            $table->integer('first_section_small')->nullable();
+            $table->integer('others_section_big')->nullable();
+            $table->integer('others_section_small')->nullable();
             $table->string('news_date')->nullable();
             $table->string('news_month')->nullable();
             $table->timestamps();

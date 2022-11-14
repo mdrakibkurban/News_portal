@@ -26,8 +26,15 @@
     <div class="container-fluid">			
         <div class="row">
             <div class="col-xs-6 col-md-2 col-sm-4">
-                <div class="header_logo">
-                    <a href=""><img src="{{asset("/frontend/assets/img/demo_logo.png")}}"></a> 
+                <div class="header_logo" style="margin-top: 15px;font-size:25px;">
+                    <a href="{{ url('/') }}">
+                      @if(session()->get('lang') == 'english')
+                       Daily News
+                       @else
+                       ডেইলি নিউস
+                       @endif
+                         
+                    </a> 
                 </div>
             </div>              
             <div class="col-xs-6 col-md-8 col-sm-8">
@@ -185,10 +192,27 @@
     <div class="container-fluid">
         <div class="row scroll">
             <div class="col-md-2 col-sm-3 scroll_01 ">
+                @if(session()->get('lang') == 'english')
+                Headline :
+                @else
                 শিরোনাম :
+                @endif
             </div>
             <div class="col-md-10 col-sm-9 scroll_02">
-                <marquee>wellcome to our website...</marquee>
+               
+               
+                    <marquee>
+                        @foreach($headlines as $headline)
+                          <a href="" style="color:white;">
+                            @if(session()->get('lang') == 'english')
+                            * {{ $headline->news_en }}
+                            @else
+                            * {{ $headline->news_bn }}
+                            @endif
+                          </a>
+                        @endforeach 
+                    </marquee>
+                 
             </div>
         </div>
     </div>
