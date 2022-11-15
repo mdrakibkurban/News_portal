@@ -802,6 +802,24 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 	margin-right:5px;
 	overflow:hidden;
 }
+
+.button-type input[type="submit"], button[type="submit"]{
+	background: #016938;
+    font-size: 15px;
+    color: #fff;
+    border: none;
+    text-align: center;
+    transition: .8s;
+    letter-spacing: 1px;
+    margin-bottom: 9px;
+    float: right;
+    margin-right: 9px;
+    margin-top: 9px;
+    overflow: hidden;
+    border-radius: 2px;
+    width: 73px;
+    height: 43px;
+}
 /**=================================
     Top Footer css  
 ==================================**/

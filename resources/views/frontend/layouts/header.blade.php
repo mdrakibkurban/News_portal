@@ -16,9 +16,7 @@
              $bn = array('শনিবার','রবিবার','সোমবার','মঙ্গলবার','বুধবার','বৃহস্পতিবার','শুক্রবার');
              $str = str_replace( $en, $bn, $str );
              $str = str_replace( $en_short, $bn_short, $str );
-             
-             $str = str_replace( $en, $bn, $str );
-              return $str;
+             return $str;
              }
      @endphp
 <!-- header-start -->
