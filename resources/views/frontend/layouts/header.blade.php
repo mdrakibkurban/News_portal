@@ -51,28 +51,15 @@
                             <!-- Collection of nav links and other content for toggling -->
                             <div id="navbarCollapse" class="collapse navbar-collapse">
                                 <ul class="nav navbar-nav">
-                                    @foreach ($categories as $category)
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                            @if(session()->get('lang') == 'english')
-                                            {{ $category->name_en}}
-                                            @else
-                                            {{ $category->name_bn}}
-                                            @endif
-                                        <b class="caret"></b></a>
-                                        <ul class="dropdown-menu">
-                                            @foreach ($subcategories as $subcategory)
-                                            @if($subcategory->category_id == $category->id)
-                                            <li><a href="#">
-                                                @if(session()->get('lang') == 'english')
-                                                {{ $subcategory->name_en }}
-                                                @else
-                                                {{ $subcategory->name_bn }}
-                                                @endif
-                                            </a></li>
-                                            @endif
-                                            @endforeach
-                                        </ul>
+                                    @foreach ($categories as $category)      
+                                     <li>
+                                     <a href="{{ route('news.category',$category->name_en)}}">
+                                      @if(session()->get('lang') == 'english')
+                                      {{ $category->name_en }}
+                                      @else
+                                     {{ $category->name_bn }}
+                                      @endif
+                                      </a>
                                     </li>
                                     @endforeach
                                 </ul>
@@ -201,7 +188,7 @@
                
                     <marquee>
                         @foreach($headlines as $headline)
-                          <a href="" style="color:white;">
+                          <a href="{{ route('news.news', ['category_en' => $headline->category->name_en, 'subcategory_en' => $headline->subcategory->name_en ?? 'topic', 'id' => $headline->id])}}" style="color:white;">
                             @if(session()->get('lang') == 'english')
                             * {{ $headline->news_en }}
                             @else

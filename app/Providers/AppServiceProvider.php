@@ -39,10 +39,12 @@ class AppServiceProvider extends ServiceProvider
             View::share('websitelinks', WebsiteLink::latest()->get());
             View::share('livetv', LiveTv::first());
             View::share('namaz', Namaz::first());
-            View::share('categories', Category::latest()->active()->take(8)->get());
+            View::share('categories', Category::latest()->active()->take(10)->get());
             View::share('subcategories', SubCategory::latest()->active()->get());
             View::share('headlines', News::latest()->where('headline', 1)->get());
-            
+            View::share('latest', News::latest()->active()->take(7)->get());
+            View::share('favourite', News::inRandomOrder()->active()->limit(7)->get());
+            View::share('special', News::latest()->active()->take(7)->get());  
         });
 
         Paginator::useBootstrap();

@@ -14,8 +14,9 @@ class HomeController extends Controller
 {
     public function index(){
         $data['first_section_big'] = News::latest()->where('first_section_big', 1)->active()->first();
-        $data['first_section_small'] = News::latest()->skip(1)->where('first_section_small', 1)->take('8')->get();
-       
+        $data['first_section_small'] = News::latest()->skip(1)->where('first_section_small', 1)
+        ->take('8')->get();
+        
         // firstcategory section
         $data['firstCat'] = Category::latest()->active()->first();
         $data['firstCatPostBig'] = News::latest()->where('category_id',$data['firstCat']->id)
@@ -27,8 +28,8 @@ class HomeController extends Controller
         $data['secondCat'] = Category::skip(1)->latest()->active()->first();
         $data['secondCatPostBig'] = News::latest()->where('category_id',$data['secondCat']->id)
         ->where('others_section_big', 1)->active()->first();
-        $data['secondCatPostSmall'] = News::latest()->skip(1)->where('category_id',$data['secondCat']->id)
-        ->where('others_section_small', 1)->active()->take(3)->get();
+        $data['secondCatPostSmall'] = News::latest()->skip(1)->where('category_id',$data['secondCat']->id)->where('others_section_small', 1)->active()->take(3)->get();
+       
 
 
         // third category section
@@ -93,7 +94,33 @@ class HomeController extends Controller
         $data['latest'] = News::latest()->active()->take(7)->get();
         $data['favourite'] = News::inRandomOrder()->active()->limit(7)->get();
         $data['special'] = News::latest()->active()->take(7)->get();
-
+  
         return view('frontend.home.index',$data);
     }
+
+
+    public function singleNews($category_en = null, $subcategory_en = null, $id){
+        $data['news'] = News::with('user','category','subcategory')->findOrFail($id);
+        $data['moreNewsFirst'] = News::where('subcategory_id', $data['news']->subcategory_id)
+        ->skip(1)->take(3)->get();
+        $data['moreNewsSecond'] = News::where('subcategory_id', $data['news']->subcategory_id)->skip(4)->take(3)->get();
+        return view('frontend.home.single',$data);
+    }
+
+
+    public function allNewsCategory($name){
+        $category = Category::with('subcategories')->where('name_en',$name)->first(); 
+        $data['category'] = $category;
+        $data['news'] = News::where('category_id',$category->id)->active()->paginate(12);;
+        return view('frontend.home.all-news-category',$data);
+    }
+
+    public function allNewsSubCategory($category_en = null, $subcategory_en){
+        $subcategory = SubCategory::with('category')->where('name_en',$subcategory_en)->first();
+        $data['subcategory'] = $subcategory;
+        $data['news'] = News::where('subcategory_id',$subcategory->id)
+        ->active()->paginate(12);
+        return view('frontend.home.all-news-subcategory',$data);
+    }
+
 }

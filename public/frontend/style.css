@@ -228,7 +228,7 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 }
 .menu_area .menu_bottom .mainmenu a , .navbar-default .navbar-nav > li > a {
     color: black;
-    font-size: 16px;
+    font-size: 18px;
     text-transform: capitalize;
     padding:10px;
 }

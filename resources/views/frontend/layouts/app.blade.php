@@ -9,6 +9,8 @@
         <meta name="description" content="{{ $seo->meta_description }}">
         <meta name="google_analytics" content="{{ $seo->google_analytics }}">
         <meta name="alexa_analytics" content="{{ $seo->alexa_analytics }}">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        @yield('meta_news')
         <title>
             @if(session()->get('lang') == 'english')
              {{ $seo->meta_title }}
@@ -25,7 +27,7 @@
         <link href="{{asset("/frontend/assets/css/responsive.css")}}" rel="stylesheet">
         <link href="{{asset("/frontend/assets/css/owl.carousel.min.css")}}" rel="stylesheet">
         <link href="{{asset("/frontend/style.css")}}" rel="stylesheet">
-
+        @stack('css')
     </head>
     <body>
     
@@ -46,5 +48,6 @@
 	<script src="{{asset("/frontend/assets/js/bootstrap.min.js")}}"></script>
 	<script src="{{asset("/frontend/assets/js/main.js")}}"></script>
 	<script src="{{asset("/frontend/assets/js/owl.carousel.min.js")}}"></script>
+    @stack('scripts')
 </body>
 </html> 
