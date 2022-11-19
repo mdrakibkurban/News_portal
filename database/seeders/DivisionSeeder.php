@@ -2,12 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\SubDistrict;
+use App\Models\Division;
 use Faker\Factory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class SubDistrictSeeder extends Seeder
+class DivisionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,12 +18,11 @@ class SubDistrictSeeder extends Seeder
     {
         $facker = Factory::create();
 
-        foreach (range(1,20) as $item) {
-            SubDistrict::create([
-                'subdistrict_en' => $facker->unique()->name,
-                'subdistrict_bn' => $facker->unique()->name,
+        foreach (range(1,8) as $item) {
+            Division::create([
+                'name_en' => $facker->unique()->name,
+                'name_bn' => $facker->unique()->name,
                 'user_id' =>1,
-                'district_id' => rand(1,8)
             ]);
         }
     }

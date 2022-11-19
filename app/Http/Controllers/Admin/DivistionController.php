@@ -3,19 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Interfaces\IDistrictRepository;
-use App\Models\District;
+use App\Interfaces\IDivisionRepository;
 use App\Models\Division;
 use Illuminate\Http\Request;
 
-class DistrictController extends Controller
-{
+class DivistionController extends Controller
+{ 
+     protected $divisionRepo;
 
-    protected $districtRepo;
-
-    public function __construct(IDistrictRepository $districtRepo)
+    public function __construct(IDivisionRepository $divisionRepo)
     {
-         $this->districtRepo = $districtRepo;
+         $this->divisionRepo = $divisionRepo;
     }
     /**
      * Display a listing of the resource.
@@ -24,8 +22,8 @@ class DistrictController extends Controller
      */
     public function index()
     {
-        $data['districts'] = $this->districtRepo->myGet();
-        return view('admin.district.index',$data);
+        $data['divisions'] = $this->divisionRepo->myGet();
+        return view('admin.division.index',$data);
     }
 
     /**
@@ -35,8 +33,7 @@ class DistrictController extends Controller
      */
     public function create()
     {
-        $data['divisions'] = Division::latest()->get();
-        return view('admin.district.create',$data);
+        return view('admin.division.create');
     }
 
     /**
@@ -48,13 +45,12 @@ class DistrictController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name_en'     =>'required|string|unique:districts',
-            'name_bn'     =>'required|string|unique:districts',
-            'division_id' => 'required'
+            'name_en' =>'required|string|unique:divisions',
+            'name_bn' =>'required|string|unique:divisions',
          ]);
 
-         $this->districtRepo->districtStore($request);
-         return redirect()->route('admin.districts.index');
+         $this->divisionRepo->divisionStore($request);
+         return redirect()->route('admin.divisions.index');
     }
 
     /**
@@ -76,13 +72,12 @@ class DistrictController extends Controller
      */
     public function edit($id)
     {
-        $district = $this->districtRepo->myFind($id);
-        if(!$district){
+        $division = $this->divisionRepo->myFind($id);
+        if(!$division){
             return redirect()->back();
         }
-        $data['district'] = $district;
-        $data['divisions'] = Division::latest()->get();
-        return view('admin.district.edit',$data);
+        $data['division'] = $division;
+        return view('admin.division.edit',$data);
     }
 
     /**
@@ -95,13 +90,12 @@ class DistrictController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name_en'     =>'required|string|unique:districts,name_en,'.$id,
-            'name_bn'     =>'required|string|unique:districts,name_bn,'.$id,
-            'division_id' => 'required'
+            'name_en' =>'required|string|unique:divisions,name_en,'.$id,
+            'name_bn' =>'required|string|unique:divisions,name_bn,'.$id,
          ]);
          
-         $this->districtRepo->districtUpdate($request,$id);
-         return redirect()->route('admin.districts.index');
+         $this->divisionRepo->divisionUpdate($request,$id);
+         return redirect()->route('admin.divisions.index');
         
 
     }
@@ -114,21 +108,21 @@ class DistrictController extends Controller
      */
     public function destroy($id)
     {
-        $this->districtRepo->myDelete($id);
+        $this->divisionRepo->myDelete($id);
         return response()->json([
             'success' =>true,
-            'message' => "District delete successfully"
+            'message' => "Division delete successfully"
         ]);
     }
 
 
-    public function districtRemoveItems(Request $request){
-        $district = District::whereIn('id',explode("," ,$request->strIds));
-        $total    = $district->count();
-        $district->delete();
+    public function divisionRemoveItems(Request $request){
+        $division = Division::whereIn('id',explode("," ,$request->strIds));
+        $total    = $division->count();
+        $division->delete();
         return response()->json([
             'success' => true,
-            'message' => 'District delete successfully',
+            'message' => 'Division delete successfully',
             'total'   =>  $total,
         ]);
    }

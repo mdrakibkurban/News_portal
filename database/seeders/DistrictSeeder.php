@@ -20,9 +20,10 @@ class DistrictSeeder extends Seeder
 
         foreach (range(1,8) as $item) {
             District::create([
-                'district_en' => $facker->unique()->name,
-                'district_bn' => $facker->unique()->name,
+                'name_en' => $facker->unique()->name,
+                'name_bn' => $facker->unique()->name,
                 'user_id' =>1,
+                'division_id' => rand(1,8)
             ]);
         }
     }

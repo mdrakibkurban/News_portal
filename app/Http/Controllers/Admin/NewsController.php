@@ -8,6 +8,7 @@ use App\Http\Requests\NewsUpdateRequest;
 use App\Interfaces\INewsRepository;
 use App\Models\Category;
 use App\Models\District;
+use App\Models\Division;
 use App\Models\News;
 use App\Models\SubCategory;
 use App\Models\SubDistrict;
@@ -42,7 +43,7 @@ class NewsController extends Controller
     public function create()
     {
         $data['categories'] = Category::latest()->active()->get(); 
-        $data['districts'] = District::latest()->get(); 
+        $data['divisions'] = Division::latest()->get(); 
         return view('admin.news.create',$data);
     }
 
@@ -53,7 +54,7 @@ class NewsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(NewsRequest $request)
-    {
+    { 
         $this->newsRepo->newsStore($request);
         return redirect()->route('admin.news.index');
     }
@@ -88,7 +89,7 @@ class NewsController extends Controller
         }
         $data['news'] = $news;
         $data['categories'] = Category::latest()->active()->get(); 
-        $data['districts'] = District::latest()->get(); 
+        $data['divisions'] = Division::latest()->get(); 
         return view('admin.news.edit',$data);
     }
 
@@ -126,9 +127,9 @@ class NewsController extends Controller
         return response()->json($subCategory);
     }
 
-    public function getSubDist(Request $request){
-        $subDistrict = SubDistrict::where('district_id',$request->district_id)->get();
-        return response()->json($subDistrict);
+    public function getDistrict(Request $request){
+        $district = District::where('division_id',$request->division_id)->get();
+        return response()->json($district);
     }
 
     public function status(Request $request){

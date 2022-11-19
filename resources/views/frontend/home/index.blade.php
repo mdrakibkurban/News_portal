@@ -11,16 +11,17 @@
 						<div class="col-md-1 col-sm-1 col-lg-1"></div>
 						<div class="col-md-10 col-sm-10">
 							<div class="lead-news">
-								<div class="service-img"><a href="{{ route('news.news', ['category_en' => $first_section_big->category->name_en, 'subcategory_en' => $first_section_big->subcategory->name_en, 'id' => $first_section_big->id])}}">
+								<div class="service-img"><a href="{{ route('news.news', ['category_en' => $first_section_big->category->name_en ?? 'tpoic', 'subcategory_en' => $first_section_big->subcategory->name_en ?? 'topic', 'id' => $first_section_big->id ?? ''])}}">
 								<img src="{{(!empty($first_section_big->image)) ? asset('storage/news_images/'.$first_section_big->image) : asset('/upload/extra.jpg') }}" alt="Notebook"></a></div>
 								<div class="content">
 								<h4 class="lead-heading-01">
-									<a href="{{ route('news.news', ['category_en' => $first_section_big->category->name_en, 'subcategory_en' => $first_section_big->subcategory->name_en, 'id' => $first_section_big->id])}}">
+									<a href="{{ route('news.news', ['category_en' => $first_section_big->category->name_en ?? 'topic', 'subcategory_en' => $first_section_big->subcategory->name_en ?? 'topic', 'id' => $first_section_big->id ?? ''])}}">
 
 									@if(session()->get('lang') == 'english')
 									{{ $first_section_big->news_en ?? null }}
 									@else
 									{{ $first_section_big->news_bn ?? null }}
+									
 									@endif
 									</a> 
 								</h4>
@@ -33,10 +34,10 @@
 						@foreach($first_section_small as $row)
 						<div class="col-md-3 col-sm-3">
 							<div class="top-news">
-								<a href="{{ route('news.news', ['category_en' => $row->category->name_en, 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id])}}">
+								<a href="{{ route('news.news', ['category_en' => $row->category->name_en , 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id ?? ''])}}">
 									<img style="height: 100px" src="{{asset('storage/news_images/'.$row->image)}}" alt="Notebook"></a>
 								<h4 class="heading-02">
-									<a href="{{ route('news.news', ['category_en' => $row->category->name_en, 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id])}}">
+									<a href="{{ route('news.news', ['category_en' => $row->category->name_en ?? 'topic', 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id ?? ''])}}">
 									@if(session()->get('lang') == 'english')
 									{{ Str::limit($row->news_en,40) ?? '' }}
 									@else
@@ -64,11 +65,11 @@
 							<div class="bg-one">
 								<div class="cetagory-title" style="font-size: 22px">	
 								 @if(session()->get('lang') == 'english')
-								 {{ $firstCat->name_en ?? null }}
+								 {{ $firstCat->name_en ?? '' }}
 								 @else
-								 {{ $firstCat->name_bn ?? null }}
+								 {{ $firstCat->name_bn ?? '' }}
 								 @endif
-								 <a href="{{ route('news.category',$firstCat->name_en)}}">
+								 <a href="{{ route('news.category',$firstCat->name_en ?? '')}}">
 									<span>
 									@if(session()->get('lang') == 'english')
 									More
@@ -81,11 +82,11 @@
 								<div class="row">
 									<div class="col-md-6 col-sm-6">
 										<div class="top-news">
-											<a href="{{ route('news.news', ['category_en' => $firstCatPostBig->category->name_en, 'subcategory_en' => $firstCatPostBig->subcategory->name_en ?? 'topic', 'id' => $firstCatPostBig->id])}}">
+											<a href="{{ route('news.news', ['category_en' => $firstCatPostBig->category->name_en ?? 'topic', 'subcategory_en' => $firstCatPostBig->subcategory->name_en ?? 'topic', 'id' => $firstCatPostBig->id ?? ''])}}">
 												<img style="height: 100px" src="{{(!empty($firstCatPostBig->image)) ? asset('storage/news_images/'.$firstCatPostBig->image) : asset('/upload/extra.jpg') }}" alt="Notebook">
 											</a>
 											<h4 class="heading-02">
-											<a href="{{ route('news.news', ['category_en' => $firstCatPostBig->category->name_en, 'subcategory_en' => $firstCatPostBig->subcategory->name_en ?? 'topic', 'id' => $firstCatPostBig->id])}}">
+											<a href="{{ route('news.news', ['category_en' => $firstCatPostBig->category->name_en ?? 'topic', 'subcategory_en' => $firstCatPostBig->subcategory->name_en ?? 'topic', 'id' => $firstCatPostBig->id ?? ''])}}">
 												@if(session()->get('lang') == 'english')
 												{{ $firstCatPostBig->news_en ?? '' }}
 												@else
@@ -98,11 +99,11 @@
 									<div class="col-md-6 col-sm-6">
 										@foreach($firstCatPostSmall as $row)
 										<div class="image-title">
-											<a href="{{ route('news.news', ['category_en' => $row->category->name_en, 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id])}}">
+											<a href="{{ route('news.news', ['category_en' => $row->category->name_en ?? 'topic', 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id ?? ''])}}">
 												<img src="{{asset('storage/news_images/'. $row->image)}}" alt="Notebook">
 											</a>
 											<h4 class="heading-03">
-												<a href="{{ route('news.news', ['category_en' => $row->category->name_en, 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id])}}">
+												<a href="{{ route('news.news', ['category_en' => $row->category->name_en ?? 'topic', 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id ?? ''])}}">
 												@if(session()->get('lang') == 'english')
 												{{ Str::limit($row->news_en,30) ?? '' }}
 												@else
@@ -120,11 +121,11 @@
 							<div class="bg-one">
 								<div class="cetagory-title" style="font-size: 22px">
 									@if(session()->get('lang') == 'english')
-									{{ $secondCat->name_en ?? null }}
+									{{ $secondCat->name_en ?? ''}}
 									@else
-									{{ $secondCat->name_bn ?? null }}
+									{{ $secondCat->name_bn ?? '' }}
 									@endif
-									<a href="{{ route('news.category',$secondCat->name_en)}}">
+									<a href="{{ route('news.category',$secondCat->name_en ?? '')}}">
 									   <span>
 									   @if(session()->get('lang') == 'english')
 									   More
@@ -137,10 +138,10 @@
 								<div class="row">
 									<div class="col-md-6 col-sm-6">
 										<div class="top-news">
-											<a href="{{ route('news.news', ['category_en' => $secondCatPostBig->category->name_en, 'subcategory_en' => $secondCatPostBig->subcategory->name_en ?? 'topic', 'id' => $secondCatPostBig->id])}}">
+											<a href="{{ route('news.news', ['category_en' => $secondCatPostBig->category->name_en ?? 'topic', 'subcategory_en' => $secondCatPostBig->subcategory->name_en ?? 'topic', 'id' => $secondCatPostBig->id ?? ''])}}">
 											<img style="height: 100px" src="{{(!empty($secondCatPostBig->image)) ? asset('storage/news_images/'.$secondCatPostBig->image) : asset('/upload/extra.jpg') }}" alt="Notebook"></a>
 											<h4 class="heading-02">
-												<a href="{{ route('news.news', ['category_en' => $secondCatPostBig->category->name_en, 'subcategory_en' => $secondCatPostBig->subcategory->name_en ?? 'topic', 'id' => $secondCatPostBig->id])}}">
+												<a href="{{ route('news.news', ['category_en' => $secondCatPostBig->category->name_en ?? 'topic', 'subcategory_en' => $secondCatPostBig->subcategory->name_en ?? 'topic', 'id' => $secondCatPostBig->id ?? ''])}}">
 												@if(session()->get('lang') == 'english')
 												{{ $secondCatPostBig->news_en ?? '' }}
 												@else
@@ -153,9 +154,9 @@
 									<div class="col-md-6 col-sm-6">
 										@foreach($secondCatPostSmall as $row)
 										<div class="image-title">
-											<a href="{{ route('news.news', ['category_en' => $row->category->name_en, 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id])}}"><img src="{{asset('storage/news_images/'. $row->image)}}" alt="Notebook"></a>
+											<a href="{{ route('news.news', ['category_en' => $row->category->name_en ?? 'topic', 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id ?? ''])}}"><img src="{{asset('storage/news_images/'. $row->image)}}" alt="Notebook"></a>
 											<h4 class="heading-03">
-											<a href="{{ route('news.news', ['category_en' => $row->category->name_en, 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id])}}">
+											<a href="{{ route('news.news', ['category_en' => $row->category->name_en, 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id ?? ''])}}">
 												@if(session()->get('lang') == 'english')
 												{{ Str::limit($row->news_en,30) ?? '' }}
 												@else
@@ -221,11 +222,11 @@
 					<div class="bg-one">
 						<div class="cetagory-title" style="font-size: 22px">
 							@if(session()->get('lang') == 'english')
-							{{ $thirdCat->name_en ?? null }}
+							{{ $thirdCat->name_en  ?? ''}}
 							@else
-							{{ $thirdCat->name_bn ?? null }}
+							{{ $thirdCat->name_bn ?? '' }}
 							@endif
-							<a href="{{ route('news.category',$thirdCat->name_en)}}">
+							<a href="{{ route('news.category',$thirdCat->name_en ?? '')}}">
 							   <span>
 							   @if(session()->get('lang') == 'english')
 							   More
@@ -238,9 +239,9 @@
 						<div class="row">
 							<div class="col-md-6 col-sm-6">
 								<div class="top-news">
-									<a href="{{ route('news.news', ['category_en' => $thirdCatPostBig->category->name_en, 'subcategory_en' => $thirdCatPostBig->subcategory->name_en ?? 'topic', 'id' => $thirdCatPostBig->id])}}"><img style="height: 150px" src="{{(!empty($thirdCatPostBig->image)) ? asset('storage/news_images/'.$thirdCatPostBig->image) : asset('/upload/extra.jpg') }}" alt="Notebook"></a>
+									<a href="{{ route('news.news', ['category_en' => $thirdCatPostBig->category->name_en ?? 'topic', 'subcategory_en' => $thirdCatPostBig->subcategory->name_en ?? 'topic', 'id' => $thirdCatPostBig->id ?? ''])}}"><img style="height: 150px" src="{{(!empty($thirdCatPostBig->image)) ? asset('storage/news_images/'.$thirdCatPostBig->image) : asset('/upload/extra.jpg') }}" alt="Notebook"></a>
 									<h4 class="heading-02">
-										<a href="{{ route('news.news', ['category_en' => $thirdCatPostBig->category->name_en, 'subcategory_en' => $thirdCatPostBig->subcategory->name_en ?? 'topic', 'id' => $thirdCatPostBig->id])}}">
+										<a href="{{ route('news.news', ['category_en' => $thirdCatPostBig->category->name_en ?? 'topic', 'subcategory_en' => $thirdCatPostBig->subcategory->name_en ?? 'topic', 'id' => $thirdCatPostBig->id ?? ''])}}">
 											@if(session()->get('lang') == 'english')
 											{{ $thirdCatPostBig->news_en ?? '' }}
 											@else
@@ -254,7 +255,7 @@
 							<div class="col-md-6 col-sm-6">
 								@foreach ($thirdCatPostSmall as $row)
 								<div class="image-title">
-									<a href="{{ route('news.news', ['category_en' => $row->category->name_en, 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id])}}"><img src="{{asset('storage/news_images/'.$row->image)}}" alt="Notebook"></a>
+									<a href="{{ route('news.news', ['category_en' => $row->category->name_en ?? 'topic', 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id ?? ''])}}"><img src="{{asset('storage/news_images/'.$row->image)}}" alt="Notebook"></a>
 									<h4 class="heading-03">
 										<a href="{{ route('news.news', ['category_en' => $row->category->name_en, 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id])}}">
 											@if(session()->get('lang') == 'english')
@@ -275,11 +276,11 @@
 					<div class="bg-one">
 						<div class="cetagory-title" style="font-size: 22px">
 							@if(session()->get('lang') == 'english')
-							{{ $fourCat->name_en ?? null }}
+							{{ $fourCat->name_en  ?? ''}}
 							@else
-							{{ $fourCat->name_bn ?? null }}
+							{{ $fourCat->name_bn  ?? ''}}
 							@endif
-							<a href="{{ route('news.category',$fourCat->name_en)}}">
+							<a href="{{ route('news.category',$fourCat->name_en ?? '')}}">
 							   <span>
 							   @if(session()->get('lang') == 'english')
 							   More
@@ -292,10 +293,10 @@
 						<div class="row">
 							<div class="col-md-6 col-sm-6">
 								<div class="top-news">
-									<a href="{{ route('news.news', ['category_en' => $fourCatPostBig->category->name_en, 'subcategory_en' => $fourCatPostBig->subcategory->name_en ?? 'topic', 'id' => $fourCatPostBig->id])}}">
+									<a href="{{ route('news.news', ['category_en' => $fourCatPostBig->category->name_en ?? 'topic', 'subcategory_en' => $fourCatPostBig->subcategory->name_en ?? 'topic', 'id' => $fourCatPostBig->id ?? ''])}}">
 										<img style="height: 150px" src="{{(!empty($fourCatPostBig->image)) ? asset('storage/news_images/'.$fourCatPostBig->image) : asset('/upload/extra.jpg') }}" alt="Notebook"></a>
 									<h4 class="heading-02">
-										<a href="{{ route('news.news', ['category_en' => $fourCatPostBig->category->name_en, 'subcategory_en' => $fourCatPostBig->subcategory->name_en ?? 'topic', 'id' => $fourCatPostBig->id])}}">
+										<a href="{{ route('news.news', ['category_en' => $fourCatPostBig->category->name_en ?? 'topic', 'subcategory_en' => $fourCatPostBig->subcategory->name_en ?? 'topic', 'id' => $fourCatPostBig->id ?? ''])}}">
 											@if(session()->get('lang') == 'english')
 											{{ $fourCatPostBig->news_en ?? '' }}
 											@else
@@ -309,11 +310,11 @@
 							<div class="col-md-6 col-sm-6">
 								@foreach ($fourCatPostSmall as $row)
 								<div class="image-title">
-									<a href="{{ route('news.news', ['category_en' => $row->category->name_en, 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id])}}" alt="Notebook">
+									<a href="{{ route('news.news', ['category_en' => $row->category->name_en ?? 'topic', 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id ?? ''])}}" alt="Notebook">
 										<img src="{{asset('storage/news_images/'.$row->image)}}" alt="Notebook"></a>
 									</a>
 									<h4 class="heading-03">
-										<a href="{{ route('news.news', ['category_en' => $row->category->name_en, 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id])}}">
+										<a href="{{ route('news.news', ['category_en' => $row->category->name_en ?? 'topic', 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id ?? ''])}}">
 											@if(session()->get('lang') == 'english')
 											{{ Str::limit($row->news_en,30) ?? '' }}
 											@else
@@ -336,11 +337,11 @@
 					<div class="bg-one">
 						<div class="cetagory-title" style="font-size: 22px">
 							@if(session()->get('lang') == 'english')
-							{{ $fiveCat->name_en ?? null }}
+							{{ $fiveCat->name_en  ?? ''}}
 							@else
-							{{ $fiveCat->name_bn ?? null }}
+							{{ $fiveCat->name_bn  ?? ''}}
 							@endif
-							<a href="{{ route('news.category',$fiveCat->name_en)}}">
+							<a href="{{ route('news.category',$fiveCat->name_en ?? '')}}">
 							   <span>
 							   @if(session()->get('lang') == 'english')
 							   More
@@ -353,9 +354,9 @@
 						<div class="row">
 							<div class="col-md-6 col-sm-6">
 								<div class="top-news">
-									<a href="{{ route('news.news', ['category_en' => $fiveCatPostBig->category->name_en, 'subcategory_en' => $fiveCatPostBig->subcategory->name_en ?? 'topic', 'id' => $fiveCatPostBig->id])}}"><img style="height: 150px" src="{{(!empty($fiveCatPostBig->image)) ? asset('storage/news_images/'.$fiveCatPostBig->image) : asset('/upload/extra.jpg') }}" alt="Notebook"></a>
+									<a href="{{ route('news.news', ['category_en' => $fiveCatPostBig->category->name_en ?? 'topic', 'subcategory_en' => $fiveCatPostBig->subcategory->name_en ?? 'topic', 'id' => $fiveCatPostBig->id ?? ''])}}"><img style="height: 150px" src="{{(!empty($fiveCatPostBig->image)) ? asset('storage/news_images/'.$fiveCatPostBig->image) : asset('/upload/extra.jpg') }}" alt="Notebook"></a>
 									<h4 class="heading-02">
-										<a href="{{ route('news.news', ['category_en' => $fiveCatPostBig->category->name_en, 'subcategory_en' => $fiveCatPostBig->subcategory->name_en ?? 'topic', 'id' => $fiveCatPostBig->id])}}">
+										<a href="{{ route('news.news', ['category_en' => $fiveCatPostBig->category->name_en ?? 'topic', 'subcategory_en' => $fiveCatPostBig->subcategory->name_en ?? 'topic', 'id' => $fiveCatPostBig->id ?? ''])}}">
 											@if(session()->get('lang') == 'english')
 											{{ $fiveCatPostBig->news_en ?? '' }}
 											@else
@@ -368,9 +369,9 @@
 							<div class="col-md-6 col-sm-6">
 								@foreach ($fiveCatPostSmall as $row)
 								<div class="image-title">
-									<a href="{{ route('news.news', ['category_en' => $row->category->name_en, 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id])}}"><img src="{{asset('storage/news_images/'.$row->image)}}" alt="Notebook"></a>
+									<a href="{{ route('news.news', ['category_en' => $row->category->name_en ?? 'topic', 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id ?? ''])}}"><img src="{{asset('storage/news_images/'.$row->image)}}" alt="Notebook"></a>
 									<h4 class="heading-03">
-										<a href="{{ route('news.news', ['category_en' => $row->category->name_en, 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id])}}">
+										<a href="{{ route('news.news', ['category_en' => $row->category->name_en ?? 'topic', 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id ?? ''])}}">
 											@if(session()->get('lang') == 'english')
 											{{ Str::limit($row->news_en,30) ?? '' }}
 											@else
@@ -388,11 +389,11 @@
 					<div class="bg-one">
 						<div class="cetagory-title" style="font-size: 22px">
 							@if(session()->get('lang') == 'english')
-							{{ $sixCat->name_en ?? null }}
+							{{ $sixCat->name_en ?? '' }}
 							@else
-							{{ $sixCat->name_bn ?? null }}
+							{{ $sixCat->name_bn ?? '' }}
 							@endif
-							<a href="{{ route('news.category',$sixCat->name_en)}}">
+							<a href="{{ route('news.category',$sixCat->name_en ?? '')}}">
 							   <span>
 							   @if(session()->get('lang') == 'english')
 							   More
@@ -405,9 +406,9 @@
 						<div class="row">
 							<div class="col-md-6 col-sm-6">
 								<div class="top-news">
-									<a href="{{ route('news.news', ['category_en' => $sixCatPostBig->category->name_en, 'subcategory_en' => $sixCatPostBig->subcategory->name_en ?? 'topic', 'id' => $sixCatPostBig->id])}}"><img style="height: 150px" src="{{(!empty($sixCatPostBig->image)) ? asset('storage/news_images/'.$sixCatPostBig->image) : asset('/upload/extra.jpg') }}" alt="Notebook"></a>
+									<a href="{{ route('news.news', ['category_en' => $sixCatPostBig->category->name_en ?? 'topic', 'subcategory_en' => $sixCatPostBig->subcategory->name_en ?? 'topic', 'id' => $sixCatPostBig->id ?? ''])}}"><img style="height: 150px" src="{{(!empty($sixCatPostBig->image)) ? asset('storage/news_images/'.$sixCatPostBig->image) : asset('/upload/extra.jpg') }}" alt="Notebook"></a>
 									<h4 class="heading-02">
-										<a href="{{ route('news.news', ['category_en' => $sixCatPostBig->category->name_en, 'subcategory_en' => $sixCatPostBig->subcategory->name_en ?? 'topic', 'id' => $sixCatPostBig->id])}}">
+										<a href="{{ route('news.news', ['category_en' => $sixCatPostBig->category->name_en ?? 'topic', 'subcategory_en' => $sixCatPostBig->subcategory->name_en ?? 'topic', 'id' => $sixCatPostBig->id ?? ''])}}">
 											@if(session()->get('lang') == 'english')
 											{{ $sixCatPostBig->news_en ?? '' }}
 											@else
@@ -420,9 +421,9 @@
 							<div class="col-md-6 col-sm-6">
 								@foreach ($sixCatPostSmall as $row)
 								<div class="image-title">
-									<a href="{{ route('news.news', ['category_en' => $row->category->name_en, 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id])}}"><img src="{{asset('storage/news_images/'.$row->image)}}" alt="Notebook"></a>
+									<a href="{{ route('news.news', ['category_en' => $row->category->name_en ?? 'topic', 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id ?? ''])}}"><img src="{{asset('storage/news_images/'.$row->image)}}" alt="Notebook"></a>
 									<h4 class="heading-03">
-										<a href="{{ route('news.news', ['category_en' => $row->category->name_en, 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id])}}">
+										<a href="{{ route('news.news', ['category_en' => $row->category->name_en ?? 'topic', 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id ?? ''])}}">
 											@if(session()->get('lang') == 'english')
 											{{ Str::limit($row->news_en,30) ?? '' }}
 											@else
@@ -460,11 +461,11 @@
 							<div class="bg-one">
 								<div class="cetagory-title" style="font-size: 22px">	
 								 @if(session()->get('lang') == 'english')
-								 {{ $sevenCat->name_en ?? null }}
+								 {{ $sevenCat->name_en ?? '' }}
 								 @else
-								 {{ $sevenCat->name_bn ?? null }}
+								 {{ $sevenCat->name_bn ?? '' }}
 								 @endif
-								 <a href="{{ route('news.category',$sevenCat->name_en)}}">
+								 <a href="{{ route('news.category',$sevenCat->name_en ?? '')}}">
 									<span>
 									@if(session()->get('lang') == 'english')
 									More
@@ -477,9 +478,9 @@
 								<div class="row">
 									<div class="col-md-6 col-sm-6">
 										<div class="top-news">
-											<a href="{{ route('news.news', ['category_en' => $sevenCatPostBig->category->name_en, 'subcategory_en' => $sevenCatPostBig->subcategory->name_en ?? 'topic', 'id' => $sevenCatPostBig->id])}}"><img style="height: 100px" src="{{(!empty($sevenCatPostBig->image)) ? asset('storage/news_images/'.$sevenCatPostBig->image) : asset('/upload/extra.jpg') }}" alt="Notebook"></a>
+											<a href="{{ route('news.news', ['category_en' => $sevenCatPostBig->category->name_en ?? 'topic', 'subcategory_en' => $sevenCatPostBig->subcategory->name_en ?? 'topic', 'id' => $sevenCatPostBig->id ?? ''])}}"><img style="height: 100px" src="{{(!empty($sevenCatPostBig->image)) ? asset('storage/news_images/'.$sevenCatPostBig->image) : asset('/upload/extra.jpg') }}" alt="Notebook"></a>
 											<h4 class="heading-02">
-											<a href="{{ route('news.news', ['category_en' => $sevenCatPostBig->category->name_en, 'subcategory_en' => $sevenCatPostBig->subcategory->name_en ?? 'topic', 'id' => $sevenCatPostBig->id])}}">
+											<a href="{{ route('news.news', ['category_en' => $sevenCatPostBig->category->name_en ?? 'topic', 'subcategory_en' => $sevenCatPostBig->subcategory->name_en ?? 'topic', 'id' => $sevenCatPostBig->id ?? ''])}}">
 												@if(session()->get('lang') == 'english')
 												{{ $sevenCatPostBig->news_en ?? '' }}
 												@else
@@ -512,11 +513,11 @@
 							<div class="bg-one">
 								<div class="cetagory-title" style="font-size: 22px">
 									@if(session()->get('lang') == 'english')
-									{{ $eightCat->name_en ?? null }}
+									{{ $eightCat->name_en ?? '' }}
 									@else
-									{{ $eightCat->name_bn ?? null }}
+									{{ $eightCat->name_bn ?? '' }}
 									@endif
-									<a href="{{ route('news.category',$eightCat->name_en)}}">
+									<a href="{{ route('news.category',$eightCat->name_en ?? '')}}">
 									   <span>
 									   @if(session()->get('lang') == 'english')
 									   More
@@ -529,9 +530,9 @@
 								<div class="row">
 									<div class="col-md-6 col-sm-6">
 										<div class="top-news">
-											<a href="{{ route('news.news', ['category_en' => $eightCatPostBig->category->name_en, 'subcategory_en' => $eightCatPostBig->subcategory->name_en ?? 'topic', 'id' => $eightCatPostBig->id])}}"><img style="height: 100px" src="{{(!empty($eightCatPostBig->image)) ? asset('storage/news_images/'.$eightCatPostBig->image) : asset('/upload/extra.jpg') }}" alt="Notebook"></a>
+											<a href="{{ route('news.news', ['category_en' => $eightCatPostBig->category->name_en ?? 'topic', 'subcategory_en' => $eightCatPostBig->subcategory->name_en ?? 'topic', 'id' => $eightCatPostBig->id ?? ''])}}"><img style="height: 100px" src="{{(!empty($eightCatPostBig->image)) ? asset('storage/news_images/'.$eightCatPostBig->image) : asset('/upload/extra.jpg') }}" alt="Notebook"></a>
 											<h4 class="heading-02">
-												<a href="{{ route('news.news', ['category_en' => $eightCatPostBig->category->name_en, 'subcategory_en' => $eightCatPostBig->subcategory->name_en ?? 'topic', 'id' => $eightCatPostBig->id])}}">
+												<a href="{{ route('news.news', ['category_en' => $eightCatPostBig->category->name_en ?? 'topic', 'subcategory_en' => $eightCatPostBig->subcategory->name_en ?? 'topic', 'id' => $eightCatPostBig->id ?? ''])}}">
 												@if(session()->get('lang') == 'english')
 												{{ $eightCatPostBig->news_en ?? '' }}
 												@else
@@ -544,12 +545,12 @@
 									<div class="col-md-6 col-sm-6">
 										@foreach($eightCatPostSmall as $row)
 										<div class="image-title">
-											<a href="{{ route('news.news', ['category_en' => $row->category->name_en, 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id])}}">
+											<a href="{{ route('news.news', ['category_en' => $row->category->name_en ?? 'topic', 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id ?? ''])}}">
 												<img src="{{asset('storage/news_images/'. $row->image)}}" alt="Notebook">
 											</a>
 											</a>
 											<h4 class="heading-03">
-											<a href="{{ route('news.news', ['category_en' => $row->category->name_en, 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id])}}">
+											<a href="{{ route('news.news', ['category_en' => $row->category->name_en ?? 'topic', 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id ?? ''])}}">
 												@if(session()->get('lang') == 'english')
 												{{ Str::limit($row->news_en,30) ?? '' }}
 												@else
@@ -606,7 +607,7 @@
 							<div class="row">
 								<div class="col-md-4 col-sm-4">
 									<div class="top-news">
-										<a href="{{ route('news.news', ['category_en' => $allCountrybig->category->name_en, 'subcategory_en' => $allCountrybig->subcategory->name_en ?? 'topic', 'id' => $allCountrybig->id])}}">
+										<a href="{{ route('news.news', ['category_en' => $allCountrybig->category->name_en ?? 'topic', 'subcategory_en' => $allCountrybig->subcategory->name_en ?? 'topic', 'id' => $allCountrybig->id ?? ''])}}">
 											<img src="{{(!empty($allCountrybig->image)) ? asset('storage/news_images/'.$allCountrybig->image) : asset('/upload/extra.jpg') }}" alt="Notebook"></a>
 										<h4 class="heading-02">
 											<a href="">
@@ -622,9 +623,9 @@
 								<div class="col-md-4 col-sm-4">
 									@foreach ($allCountryFirst3 as $row)
 									<div class="image-title">
-										<a href="{{ route('news.news', ['category_en' => $row->category->name_en, 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id])}}"><img src="{{asset('storage/news_images/'.$row->image)}}" alt="Notebook"></a>
+										<a href="{{ route('news.news', ['category_en' => $row->category->name_en ?? 'topic', 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id ?? ''])}}"><img src="{{asset('storage/news_images/'.$row->image)}}" alt="Notebook"></a>
 										<h4 class="heading-03">
-											<a href="{{ route('news.news', ['category_en' => $row->category->name_en, 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id])}}">
+											<a href="{{ route('news.news', ['category_en' => $row->category->name_en ?? 'topic', 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id ?? ''])}}">
 												@if(session()->get('lang') == 'english')
 												{{ $row->news_en ?? '' }}
 												@else
@@ -638,9 +639,9 @@
 								<div class="col-md-4 col-sm-4">
 									@foreach ($allCountrysecond3 as $row)
 									<div class="image-title">
-										<a href="{{ route('news.news', ['category_en' => $row->category->name_en, 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id])}}"><img src="{{asset('storage/news_images/'.$row->image)}}" alt="Notebook"></a>
+										<a href="{{ route('news.news', ['category_en' => $row->category->name_en ?? 'topic', 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id ?? ''])}}"><img src="{{asset('storage/news_images/'.$row->image)}}" alt="Notebook"></a>
 										<h4 class="heading-03">
-											<a href="{{ route('news.news', ['category_en' => $row->category->name_en, 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id])}}">
+											<a href="{{ route('news.news', ['category_en' => $row->category->name_en ?? 'topic', 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id ?? ''])}}">
 												@if(session()->get('lang') == 'english')
 												{{ $row->news_en ?? '' }}
 												@else
@@ -719,7 +720,7 @@
 									@foreach($latest as $row)
 									<div class="news-title-02">
 										<h4 class="heading-03">
-											<a href="{{ route('news.news', ['category_en' => $row->category->name_en, 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id])}}">
+											<a href="{{ route('news.news', ['category_en' => $row->category->name_en ?? 'topic', 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id ?? ''])}}">
 												@if(session()->get('lang') == 'english')
 												{{ $row->news_en ?? '' }}
 												@else
@@ -736,7 +737,7 @@
 									@foreach($favourite as $row)
 									<div class="news-title-02">
 										<h4 class="heading-03">
-											<a href="{{ route('news.news', ['category_en' => $row->category->name_en, 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id])}}">
+											<a href="{{ route('news.news', ['category_en' => $row->category->name_en ?? 'topic', 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id ?? ''])}}">
 												@if(session()->get('lang') == 'english')
 												{{ $row->news_en ?? '' }}
 												@else
@@ -753,7 +754,7 @@
 									@foreach($special as $row)
 									<div class="news-title-02">
 										<h4 class="heading-03">
-											<a href="{{ route('news.news', ['category_en' => $row->category->name_en, 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id])}}">
+											<a href="{{ route('news.news', ['category_en' => $row->category->name_en ?? 'topic', 'subcategory_en' => $row->subcategory->name_en ?? 'topic', 'id' => $row->id ?? ''])}}">
 												@if(session()->get('lang') == 'english')
 												{{ $row->news_en ?? '' }}
 												@else
@@ -785,7 +786,7 @@
 								ফজর
 								@endif
 							</th>
-							<td>{{ $namaz->fojor_en }}</td>
+							<td>{{ $namaz->fojor_en ?? '' }}</td>
 						</tr>
 
 						<tr>
@@ -796,7 +797,7 @@
 								জোহর
 								@endif
 							</th>
-							<td>{{ $namaz->johr_en }}</td>
+							<td>{{ $namaz->johr_en ?? ''}}</td>
 						</tr>
 
 						<tr>
@@ -807,7 +808,7 @@
 								আসর
 								@endif
 							</th>
-							<td>{{ $namaz->asor_en }}</td>
+							<td>{{ $namaz->asor_en ?? ''}}</td>
 						</tr>
 
 						<tr>
@@ -818,7 +819,7 @@
 								মাগরিব
 								@endif
 							</th>
-							<td>{{ $namaz->magrib_en }}</td>
+							<td>{{ $namaz->magrib_en ?? ''}}</td>
 						</tr>
 
 						<tr>
@@ -829,7 +830,7 @@
 								এশা
 								@endif
 							</th>
-							<td>{{ $namaz->esha_en }}</td>
+							<td>{{ $namaz->esha_en ?? ''}}</td>
 						</tr>
 						<tr>
 							<th>
@@ -839,7 +840,7 @@
 								জুম্মাহ
 								@endif
 							</th>
-							<td>{{ $namaz->jummah_en }}</td>
+							<td>{{ $namaz->jummah_en ?? ''}}</td>
 						</tr>
 
 						@else
@@ -852,7 +853,7 @@
 								ফজর
 								@endif
 							</th>
-							<td>{{ $namaz->fojor_bn }}</td>
+							<td>{{ $namaz->fojor_bn ?? ''}}</td>
 						</tr>
 
 						<tr>
@@ -863,7 +864,7 @@
 								জোহর
 								@endif
 							</th>
-							<td>{{ $namaz->johr_bn }}</td>
+							<td>{{ $namaz->johr_bn ?? ''}}</td>
 						</tr>
 
 						<tr>
@@ -874,7 +875,7 @@
 								আসর
 								@endif
 							</th>
-							<td>{{ $namaz->asor_bn }}</td>
+							<td>{{ $namaz->asor_bn ?? ''}}</td>
 						</tr>
 
 						<tr>
@@ -885,7 +886,7 @@
 								মাগরিব
 								@endif
 							</th>
-							<td>{{ $namaz->magrib_bn }}</td>
+							<td>{{ $namaz->magrib_bn ?? ''}}</td>
 						</tr>
 
 						<tr>
@@ -896,7 +897,7 @@
 								এশা
 								@endif
 							</th>
-							<td>{{ $namaz->esha_bn }}</td>
+							<td>{{ $namaz->esha_bn ?? ''}}</td>
 						</tr>
 						<tr>
 							<th>
@@ -906,7 +907,7 @@
 								জুম্মাহ
 								@endif
 							</th>
-							<td>{{ $namaz->jummah_bn }}</td>
+							<td>{{ $namaz->jummah_bn ?? ''}}</td>
 						</tr>
 					    @endif
 					</table>
@@ -934,11 +935,11 @@
 				   	@foreach($websitelinks as $link)
 						<div class="news-title-02">
 							<h4 class="heading-03">
-								<a target="_blank" href="{{$link->website_link}}"><i class="fa fa-check" aria-hidden="true"></i>
+								<a target="_blank" href="{{$link->website_link ?? ''}}"><i class="fa fa-check" aria-hidden="true"></i>
 								@if(session()->get('lang') == 'english')
-								{{ $link->website_name_en}}
+								{{ $link->website_name_en ?? ''}}
 								@else
-								{{ $link->website_name_bn}}
+								{{ $link->website_name_bn ?? ''}}
 							    @endif
 							  </a> 
 							</h4>
@@ -988,9 +989,9 @@
 	                                <img src="{{asset('storage/photo_images/'.$row->photo)}}" alt="image" onclick="currentDiv(1)">
 	                                <div class="heading-03">
 	                                    @if(session()->get('lang') == 'english')
-										{{ $row->title_en}}
+										{{ $row->title_en ?? ''}}
 										@else
-										{{ $row->title_bn}}
+										{{ $row->title_bn ?? ''}}
 										@endif
 	                                </div>
 	                            </div>
@@ -1052,7 +1053,7 @@
                             <div class="video_screen">
                                 <div class="myVideos" style="width:100%">
                                     <div class="embed-responsive embed-responsive-16by9 embed-responsive-item">
-                                    <iframe width="853" height="480" src="https://www.youtube.com/embed/{{$vediogGalleryBig->embed_code}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    <iframe width="853" height="480" src="https://www.youtube.com/embed/{{$vediogGalleryBig->embed_code ?? ''}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                 </div>
                                 </div>
                             </div>
@@ -1065,13 +1066,13 @@
                             <div class="gallery_sec owl-carousel">
                                 @foreach($vediogGallerySmall as $row)
 								<div class="video_image" style="width:100%" onclick="currentDivs(1)">
-									<iframe width="120" height="90" src="https://www.youtube.com/embed/{{ $row->embed_code}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+									<iframe width="120" height="90" src="https://www.youtube.com/embed/{{ $row->embed_code ?? ''}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                     <div class="heading-03">
                                         <div class="content_padding">
 											@if(session()->get('lang') == 'english')
-											{{ $row->title_en}}
+											{{ $row->title_en ?? ''}}
 											@else
-											{{ $row->title_bn}}
+											{{ $row->title_bn ?? ''}}
 											@endif
                                         </div>
                                     </div>

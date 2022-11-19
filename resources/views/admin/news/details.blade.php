@@ -67,20 +67,24 @@
                      </tr>
 
                      <tr>
-                        <th style="width:200px">District</th>
+                        <th style="width:200px">Division</th>
                         <td>
-                            <span class="badge badge-secondary">{{ $news->district->district_en ?? '' }}</span>
+                            <span class="badge badge-secondary">{{ $news->division->name_en ?? '' }}</span>
                                    
-                            <span class="badge badge-secondary">{{ $news->district->district_bn ?? '' }}</span>
+                            <span class="badge badge-secondary">{{ $news->division->name_bn ?? '' }}</span>
                         </td>
                      </tr>
 
                      <tr>
-                        <th style="width:200px">Sub District</th>
+                        <th style="width:200px">District</th>
                         <td>
-                            <span class="badge badge-secondary">{{ $news->subdistrict->subdistrict_en ?? '' }}</span>
+                            <span class="badge badge-secondary">
+                              {{ $news->district->name_en ?? '' }}
+                           </span>
                                    
-                            <span class="badge badge-secondary">{{ $news->subdistrict->subdistrict_bn ?? '' }}</span>
+                            <span class="badge badge-secondary">
+                              {{ $news->district->name_bn ?? '' }}
+                           </span>
                         </td>
                      </tr>
 

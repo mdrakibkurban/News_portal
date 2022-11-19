@@ -24,7 +24,7 @@
                                 @endif
                             </a>
                         </li>
-                        @if($news->subcategory > 0)
+                        @if($news->subcategory)
 						<li>
                             <a href="{{ route('news.subcategory', ['category_en' => $news->category->name_en ?? '', 'subcategory_en' => $news->subcategory->name_en ?? 'topic'])}}">
                                 @if(session()->get('lang') == 'english')
@@ -65,10 +65,11 @@
                             <li>
                               <i class="fa fa-clock-o"></i> 
                               @if(session()->get('lang') == 'english')
-                              {{ date('d m, Y', strtotime($news->news_date)) }}
+                              {{ date('d m, Y', strtotime($news->news_date)) }},
+                              {{ date('h:i', strtotime($news->news_time)) }}
                               @else
-                              {{ date('d m, Y', strtotime($news->news_date)) }}
-                        
+                              {{ date('d m, Y', strtotime($news->news_date)) }},
+                              {{ date('h:i', strtotime($news->news_time)) }}
                               @endif
                             </li>
 						 </ul>

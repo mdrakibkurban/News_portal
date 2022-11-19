@@ -13,13 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('districts', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('name_en')->unique();
-            $table->string('name_bn')->unique();
-            $table->timestamps();
-        });
+        Schema::rename('districts', 'divisions');
     }
 
     /**
@@ -29,6 +23,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('districts');
+        Schema::rename('divisions', 'districts');
     }
 };

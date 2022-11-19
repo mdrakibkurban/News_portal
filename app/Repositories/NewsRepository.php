@@ -34,8 +34,8 @@ class NewsRepository extends BaseRepository implements INewsRepository
             $news->user_id              = Auth::id();
             $news->category_id          = $request->category_id;
             $news->subcategory_id       = $request->subcategory_id;
+            $news->division_id          = $request->division_id;
             $news->district_id          = $request->district_id;
-            $news->subdistrict_id       = $request->subdistrict_id;
             $news->news_en              = $request->news_en;
             $news->news_bn              = $request->news_bn;
             $news->des_en               = $request->des_en;
@@ -50,6 +50,7 @@ class NewsRepository extends BaseRepository implements INewsRepository
             $news->others_section_small = $request->others_section_small;
             $news->news_date            = date('d-m-Y');
             $news->news_month           = date('F');
+            $news->news_time            = date('h:s');
             $news->image                =  $file_path;
             $news->save();
             Toastr::success('News create successfuly', 'success', ["positionClass" => "toast-top-right",  "closeButton"=> true,   "progressBar"=> true,]);
@@ -82,8 +83,8 @@ class NewsRepository extends BaseRepository implements INewsRepository
         try {
             $news->category_id          = $request->category_id;
             $news->subcategory_id       = $request->subcategory_id;
+            $news->division_id          = $request->division_id;
             $news->district_id          = $request->district_id;
-            $news->subdistrict_id       = $request->subdistrict_id;
             $news->news_en              = $request->news_en;
             $news->news_bn              = $request->news_bn;
             $news->des_en               = $request->des_en;
@@ -98,6 +99,7 @@ class NewsRepository extends BaseRepository implements INewsRepository
             $news->others_section_small = $request->others_section_small;
             $news->news_date            = date('d-m-Y');
             $news->news_month           = date('F');
+            $news->news_time            = date('h:s');
             $news->image                =  $file_path;
             $news->save();
             Toastr::success('News Update successfuly', 'success', ["positionClass" => "toast-top-right",  "closeButton"=> true,   "progressBar"=> true,]);

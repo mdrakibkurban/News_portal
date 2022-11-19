@@ -20,12 +20,12 @@ class News extends Model
         return $this->belongsTo(SubCategory::class);
     }
 
-    public function district(){
-        return $this->belongsTo(District::class);
+    public function division(){
+        return $this->belongsTo(Division::class);
     }
 
-    public function subdistrict(){
-        return $this->belongsTo(SubDistrict::class);
+    public function district(){
+        return $this->belongsTo(District::class);
     }
 
     public function scopeActive($query)

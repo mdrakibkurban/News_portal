@@ -55,23 +55,23 @@
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-file"></i>
                   <p>
-                    District
+                    Division
                     <i class="right fas fa-angle-left"></i>
                   </p>
                 </a>
                 <ul class="nav nav-treeview" style="display: block;">
     
                   <li class="nav-item">
-                    <a href="{{ route('admin.districts.index')}}" class="nav-link {{ request()->is('*/districts*') ? 'active' : ' '}}">
+                    <a href="{{ route('admin.divisions.index')}}" class="nav-link {{ request()->is('*/divisions*') ? 'active' : ' '}}">
                       <i class="fas fa-list nav-icon"></i>
-                      <p>District</p>
+                      <p>Division</p>
                     </a>
                   </li>
     
                   <li class="nav-item">
-                    <a href="{{ route('admin.sub-districts.index')}}" class="nav-link {{ request()->is('*/sub-districts*') ? 'active' : ' '}}">
+                    <a href="{{ route('admin.districts.index')}}" class="nav-link {{ request()->is('*/districts*') ? 'active' : ' '}}">
                       <i class="fas fa-list nav-icon"></i>
-                      <p>Sub District</p>
+                      <p>District</p>
                     </a>
                   </li>
                 </ul>

@@ -73,22 +73,22 @@
                     
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label for="">Choose District</label>
-                            <select name="district_id" value="{{ old('district_id')}}" class="form-control" id="select1">
-                                <option value="">-- Choose District --</option>
-                                @foreach($districts as $district)
-                                  <option value="{{ $district->id }}" 
-                                  {{ old('district_id') ==  $district->id ? 'selected' : ' '}}>
-                                  {{ $district->district_en }} | {{ $district->district_bn }}
+                            <label for="">Choose Division</label>
+                            <select name="division_id" class="form-control" id="select1">
+                                <option value="">-- Choose Division --</option>
+                                @foreach($divisions as $division)
+                                  <option value="{{$division->id }}" 
+                                  {{ old('division_id') ==  $division->id ? 'selected' : ' '}}>
+                                  {{ $division->name_en }} | {{ $division->name_bn }}
                                   </option>
                                 @endforeach
                               </select>
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label for="">Choose SubDistrict</label>
-                            <select name="subdistrict_id" value="{{ old('subdistrict_id')}}" class="form-control" id="subDis_id">
-                                <option disabled="" selected="">-- Choose SubDistrict --</option>
+                            <label for="">Choose District</label>
+                            <select name="district_id" class="form-control" id="district_id">
+                                <option disabled="" selected="">-- Choose District --</option>
                             </select>
                         </div>
                     </div>
@@ -233,17 +233,17 @@
             });
 
 
-            $(document).on('change', 'select[name="district_id"]', function() {
-                let district_id = $(this).val();
+            $(document).on('change', 'select[name="division_id"]', function() {
+                let division_id = $(this).val();
                 $.ajax({
-                    url    : "{{ route('admin.get.subdist')}}",
+                    url    : "{{ route('admin.get.district')}}",
                     method : 'post',
-                    data   : {district_id : district_id },
+                    data   : {division_id : division_id },
                     success: function(result){
-                        $('#subDis_id').empty();
+                        $('#district_id').empty();
                         $.each(result,function(key, value){
-                            $('#subDis_id').append('<option value="'+value.id+'">'
-                                +value.subdistrict_bn+' | '+value.subdistrict_en+'</option>')
+                            $('#district_id').append('<option value="'+value.id+'">'
+                                +value.name_bn+' | '+value.name_en+'</option>')
                         });
                     }
                 });

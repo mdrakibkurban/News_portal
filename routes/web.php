@@ -3,12 +3,12 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DistrictController;
+use App\Http\Controllers\Admin\DivistionController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\NoticeController;
 use App\Http\Controllers\Admin\PhotoGalleryController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SubCategoryController;
-use App\Http\Controllers\Admin\SubDistrictController;
 use App\Http\Controllers\Admin\VedioGalleryController;
 use App\Http\Controllers\Admin\WebsiteLinkController;
 use App\Http\Controllers\Frontend\HomeController;
@@ -31,11 +31,11 @@ Route::get('/', [HomeController::class,'index']);
 // });
 
 Route::prefix('news')->name('news.')->group(function(){
-  Route::get('/{category_en}', [HomeController::class,'allNewsCategory'])->name('category');
-  Route::get('/{category_en?}/{subcategory_en}', [HomeController::class,'allNewsSubCategory'])
+  Route::get('/{category_en?}', [HomeController::class,'allNewsCategory'])->name('category');
+  Route::get('/{category_en?}/{subcategory_en?}', [HomeController::class,'allNewsSubCategory'])
   ->name('subcategory');
 // Route::get('/{category_name}/{subcategory_name}/{subsubcategory_name}', 'HomeController@search')->name('products.subsubcategory');
-Route::get('/{category_en?}/{subcategory_en?}/{id}', [HomeController::class,'singleNews'])->name('news');
+Route::get('/{category_en?}/{subcategory_en?}/{id?}', [HomeController::class,'singleNews'])->name('news');
 });
 
 
@@ -65,26 +65,26 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
      //sub-category route end
 
 
+     //division route start
+     Route::resource('/divisions',DivistionController::class);
+     Route::post('/division/remove/items',[DivistionController::class,'divisionRemoveItems'])
+     ->name('division.remove.items');
+    //division route end
+
      //districts route start
      Route::resource('/districts',DistrictController::class);
      Route::post('/district/remove/items',[DistrictController::class,'districtRemoveItems'])
      ->name('district.remove.items');
     //districts route end
 
-     //districts route start
-     Route::resource('/sub-districts',SubDistrictController::class);
-     Route::post('/sub-district/remove/items',[SubDistrictController::class,'SubdistrictRemoveItems'])
-     ->name('sub-district.remove.items');
-    //districts route end
-
-    //districts route start
+    //news route start
     Route::resource('/news',NewsController::class);
     Route::post('/get/subcat',[NewsController::class,'getSubCat'])->name('get.subcat');
-    Route::post('/get/subdist',[NewsController::class,'getSubDist'])->name('get.subdist');
+    Route::post('/get/district',[NewsController::class,'getDistrict'])->name('get.district');
     Route::get('/news-status',[NewsController::class,'status'])->name('news.status');
     Route::post('/news/remove/items',[NewsController::class,'newsRemoveItems'])
     ->name('news.remove.items');
-    //districts route end
+    //news route end
 
     // setting route
     // Social setting route
