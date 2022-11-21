@@ -587,10 +587,39 @@
 							</div>
 
 						    <div class="row">
-								<form action="" method="post">
+								@php
+									$divisions = DB::table('divisions')->get();
+								@endphp
+								<form action="{{ route('news.saradesh')}}" method="post">
+									@csrf
 									<div class="old-news-date col-md-6">
-									   <input type="text" name="district_id" placeholder="District" required="">
-									   <input type="text" name="subdistrict_id" placeholder="Sub District">			
+										<select name="division_id" id="">
+											<option value="">
+												@if(session()->get('lang') == 'english')
+												--Chosse One--
+												@else
+												--নির্বাচন ওয়ান-- 
+												@endif
+												</option>
+											@foreach($divisions as $row)
+											  <option value="{{$row->id}}">
+												@if(session()->get('lang') == 'english')
+												{{$row->name_en}}
+												@else
+												{{$row->name_bn}}
+												@endif
+											  </option>
+											@endforeach
+										</select>
+										<select name="district_id" id="district_id">
+											<option value="">
+												@if(session()->get('lang') == 'english')
+												--Chosse One--
+												@else
+												--নির্বাচন ওয়ান-- 
+												@endif
+											</option>
+										</select>		
 									</div>
 									<div class="button-type col-md-1">
 										<button type="submit">
@@ -1119,3 +1148,29 @@
 
 
 @endsection
+@push('scripts')
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+	$( document ).ready(function() {
+	$(document).on('change', 'select[name="division_id"]', function() {
+        let division_id = $(this).val();
+            $.ajax({
+                url    : "{{ route('frontend.get.district')}}",
+                method : 'post',
+                data   : {division_id : division_id },
+                success: function(result){
+                    $('#district_id').empty();
+                    $.each(result,function(key, value){
+                    $('#district_id').append('<option value="'+value.id+'">'
+                       +value.name_bn+'</option>')
+                    });
+                }
+            });
+        });
+	});
+</script>
+@endpush

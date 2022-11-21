@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\District;
+use App\Models\Division;
 use App\Models\News;
 use App\Models\PhotoGallery;
 use App\Models\SubCategory;
@@ -124,4 +126,17 @@ class HomeController extends Controller
         return view('frontend.home.all-news-subcategory',$data);
     }
 
+    public function getDistrict(Request $request){
+        $district = District::where('division_id',$request->division_id)->get();
+        return response()->json($district);
+    }
+
+
+    public function saradesh(Request $request){
+         $data['division'] = Division::where('id',$request->division_id)->first();
+         $data['district'] = District::where('id',$request->district_id)->first();
+         $data['news'] = News::where('division_id',$request->division_id)->where('district_id',$request->district_id)->paginate(12);
+         
+         return view('frontend.home.saradesh',$data);
+    }
 }

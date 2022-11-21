@@ -16,6 +16,13 @@
              $bn = array('শনিবার','রবিবার','সোমবার','মঙ্গলবার','বুধবার','বৃহস্পতিবার','শুক্রবার');
              $str = str_replace( $en, $bn, $str );
              $str = str_replace( $en_short, $bn_short, $str );
+             $en = array( 'am', 'pm' );
+             $bn = array( 'পূর্বাহ্ন', 'অপরাহ্ন' );
+             $str = str_replace( $en, $bn, $str );
+             $str = str_replace( $en_short, $bn_short, $str );
+             $en = array( '১২', '২৪' );
+             $bn = array( '৬', '১২' );
+             $str = str_replace( $en, $bn, $str );
              return $str;
              }
      @endphp

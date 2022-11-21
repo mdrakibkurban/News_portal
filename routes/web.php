@@ -13,30 +13,23 @@ use App\Http\Controllers\Admin\VedioGalleryController;
 use App\Http\Controllers\Admin\WebsiteLinkController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\LanguageController;
-use App\Models\Social;
 use Illuminate\Support\Facades\Route;
-use PHPUnit\TextUI\XmlConfiguration\Group;
+
 
 Route::get('/', [HomeController::class,'index']);
 
 
-// Route::get('/view/single/news/{id}', [HomeController::class,'singleNews'])->name('single.news');
-
-// Route::get('news/subcategory/{id}/{name_bn}', [HomeController::class,'allNewsSubCategory'])
-// ->name('news.subcategory');
-
-// Route::prefix('news')->name('news.')->group(function(){
-//   Route::get('{id?}/{name_bn}', [HomeController::class,'allNewsCategory'])
-//   ->name('category');
-// });
 
 Route::prefix('news')->name('news.')->group(function(){
   Route::get('/{category_en?}', [HomeController::class,'allNewsCategory'])->name('category');
   Route::get('/{category_en?}/{subcategory_en?}', [HomeController::class,'allNewsSubCategory'])
   ->name('subcategory');
-// Route::get('/{category_name}/{subcategory_name}/{subsubcategory_name}', 'HomeController@search')->name('products.subsubcategory');
-Route::get('/{category_en?}/{subcategory_en?}/{id?}', [HomeController::class,'singleNews'])->name('news');
+  Route::get('/{category_en?}/{subcategory_en?}/{id?}', [HomeController::class,'singleNews'])->name('news');
 });
+
+Route::post('frontend/get/district',[HomeController::class,'getDistrict'])->name('frontend.get.district');
+
+Route::post('frontend/news/saradesh',[HomeController::class,'saradesh'])->name('news.saradesh');
 
 
 

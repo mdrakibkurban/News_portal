@@ -1,3 +1,30 @@
+        @php
+         function bangla_date($str)
+             {
+             $en = array(1,2,3,4,5,6,7,8,9,0);
+             $bn = array('১','২','৩','৪','৫','৬','৭','৮','৯','০');
+             $str = str_replace($en, $bn, $str);
+             $en = array( 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' );
+             $en_short = array( 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' );
+             $bn = array( 'জানুয়ারী', 'ফেব্রুয়ারী', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'অগাস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর' );
+             $str = str_replace( $en, $bn, $str );
+             $str = str_replace( $en_short, $bn, $str );
+             $en = array('Saturday','Sunday','Monday','Tuesday','Wednesday','Thursday','Friday');
+             $en_short = array('Sat','Sun','Mon','Tue','Wed','Thu','Fri');
+             $bn_short = array('শনি', 'রবি','সোম','মঙ্গল','বুধ','বৃহঃ','শুক্র');
+             $bn = array('শনিবার','রবিবার','সোমবার','মঙ্গলবার','বুধবার','বৃহস্পতিবার','শুক্রবার');
+             $str = str_replace( $en, $bn, $str );
+             $str = str_replace( $en_short, $bn_short, $str );
+             $en = array( 'am', 'pm' );
+             $bn = array( 'পূর্বাহ্ন', 'অপরাহ্ন' );
+             $str = str_replace( $en, $bn, $str );
+             $str = str_replace( $en_short, $bn_short, $str );
+             $en = array( '১২', '২৪' );
+             $bn = array( '৬', '১২' );
+             $str = str_replace( $en, $bn, $str );
+             return $str;
+             }
+     @endphp
 @extends('frontend.layouts.app')
 @section('meta_news')
   <meta property="og:url" content="{{Request::fullUrl()}}" />
@@ -7,8 +34,7 @@
   <meta property="og:image" content="{{URL::to($news->image)}}" />
 @endsection
 @section('content')
-       	<!-- single-page-start -->
-	
+       	<!-- single-page-start -->  
 	<section class="single-page">
 		<div class="container-fluid">
 			<div class="row">
@@ -63,13 +89,17 @@
                                 @endif
                             </li>  
                             <li>
+                                <script type="text/javascript" src="http://bangladate.appspot.com/index2.php"></script>
                               <i class="fa fa-clock-o"></i> 
                               @if(session()->get('lang') == 'english')
                               {{ date('d m, Y', strtotime($news->news_date)) }},
                               {{ date('h:i', strtotime($news->news_time)) }}
                               @else
-                              {{ date('d m, Y', strtotime($news->news_date)) }},
-                              {{ date('h:i', strtotime($news->news_time)) }}
+                              {{-- {{ date('d m, Y', strtotime($news->news_date)) }},
+                              {{ date('h:i', strtotime($news->news_time)) }} --}}
+
+                              {{ bangla_date($news->news_date)}} 
+                              {{ bangla_date($news->news_time)}} 
                               @endif
                             </li>
 						 </ul>
