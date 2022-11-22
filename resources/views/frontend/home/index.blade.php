@@ -54,8 +54,18 @@
 					
 					<!-- add-start -->	
 					<div class="row">
+						@php
+							$horizotal2 = DB::table('ads')->where('type',2)->skip(1)->first();
+						@endphp
 						<div class="col-md-12 col-sm-12">
-							<div class="add"><img src="{{asset("/frontend/assets/img/top-ad.jpg")}}" alt="" /></div>
+							<div class="add">
+								@if($horizotal2 == NULL)
+								@else
+								 <a target="_blank" href="{{ $horizotal2->links }}">
+									<img style="width: 970px; height:90px" src="{{asset('storage/horizotal_images/'.$horizotal2->ads)}}" alt="" />
+								 </a>
+								@endif 
+							</div>
 						</div>
 					</div><!-- /.add-close -->	
 					
@@ -175,8 +185,16 @@
 				<div class="col-md-3 col-sm-3">
 					<!-- add-start -->	
 					<div class="row">
+						
 						<div class="col-md-12 col-sm-12">
-							<div class="sidebar-add"><img src="{{asset("/frontend/assets/img/add_01.jpg")}}" alt="" /></div>
+							<div class="sidebar-add">
+								@if($vartical1 == NULL)
+								@else
+								 <a target="_blank" href="{{ $vartical1->links }}">
+									<img  src="{{asset('storage/vartical_images/'.$vartical1->ads)}}" alt="" />
+								 </a>
+								@endif
+							</div>
 						</div>
 					</div><!-- /.add-close -->	
 					
@@ -196,16 +214,30 @@
 					</div><!-- /.youtube-live-close -->	
 					@endif
 					<!-- facebook-page-start -->
-					<div class="cetagory-title-03">ফেসবুকে আমরা</div>
+					{{-- <div class="cetagory-title-03">
+						@if(session()->get('lang') == 'english')
+						Our Facebook
+						@else
+						ফেসবুকে আমরা
+						@endif
+					</div> --}}
 					<div class="fb-root">
-						facebook page here
+						<div id="fb-root"></div>
+						<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v15.0" nonce="Eg4zRqI7"></script>
+						<div class="fb-page" data-href="https://web.facebook.com/?_rdc=1&amp;_rdr" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"></div>
+						
 					</div><!-- /.facebook-page-close -->	
 					
 					<!-- add-start -->	
 					<div class="row">
 						<div class="col-md-12 col-sm-12">
 							<div class="sidebar-add">
-								<img src="{{asset("/frontend/assets/img/add_01.jpg")}}" alt="" />
+								@if($vartical2 == NULL)
+								@else
+								 <a target="_blank" href="{{ $vartical2->links }}">
+									<img  src="{{asset('storage/vartical_images/'.$vartical2->ads)}}" alt="" />
+								 </a>
+								@endif
 							</div>
 						</div>
 					</div><!-- /.add-close -->	
@@ -440,11 +472,31 @@
 			</div>
 			<!-- add-start -->	
 			<div class="row">
+				@php
+				$horizotal3 = DB::table('ads')->where('type',2)->skip(2)->first();
+				@endphp
 				<div class="col-md-6 col-sm-6">
-					<div class="add"><img src="{{asset("/frontend/assets/img/top-ad.jpg")}}" alt="" /></div>
+					<div class="add">
+						@if($horizotal3 == NULL)
+						@else
+						 <a target="_blank" href="{{ $horizotal3->links }}">
+							<img style="width: 970px; height:90px" src="{{asset('storage/horizotal_images/'.$horizotal3->ads)}}" alt="" />
+						</a>
+						@endif 
+					</div>
 				</div>
+				@php
+				$horizotal4 = DB::table('ads')->where('type',2)->skip(3)->first();
+				@endphp
 				<div class="col-md-6 col-sm-6">
-					<div class="add"><img src="{{asset("/frontend/assets/img/top-ad.jpg")}}" alt="" /></div>
+					<div class="add">
+						@if($horizotal4 == NULL)
+						@else
+						 <a target="_blank" href="{{ $horizotal4->links }}">
+							<img style="width: 970px; height:90px" src="{{asset('storage/horizotal_images/'.$horizotal4->ads)}}" alt="" />
+						</a>
+						@endif 
+					</div>
 				</div>
 			</div><!-- /.add-close -->	
 			
@@ -683,32 +735,29 @@
 								</div>
 							</div>
 							<!-- ******* -->
-							<br>
-							
-							
-							<div class="row">
-								<div class="col-md-12 col-sm-12">
-									<div class="sidebar-add">
-										<img src="assets/img/top-ad.jpg" alt="">
-									</div>
-								</div>
-							</div><!-- /.add-close -->	
-		
-		
+		                   <br><br>
 						</div>
 					</div>
 					
 					<div class="row">
+						@php
+						$horizotal5 = DB::table('ads')->where('type',2)->skip(4)->first();
+						@endphp
+						
 						<div class="col-md-12 col-sm-12">
 							<div class="sidebar-add">
-								<img src="{{asset("/frontend/assets/img/top-ad.jpg")}}" alt="" />
+								@if($horizotal5 == NULL)
+								@else
+								<a target="_blank" href="{{ $horizotal5->links ?? '' }}">
+									<img style="width: 970px; height:90px" src="{{asset('storage/horizotal_images/'.$horizotal5->ads ?? '')}}" alt="" />
+								</a>
+								@endif
 							</div>
 						</div>
 					</div><!-- /.add-close -->	
-
-
 				</div>
-				<div class="col-md-3 col-sm-3">
+				
+				<div class="col-md-3 col-sm-3 ">
 					<div class="tab-header">
 						<!-- Nav tabs -->
 						<ul class="nav nav-tabs nav-justified" role="tablist">
@@ -798,6 +847,7 @@
 						</div>
 					</div>
 					<!-- Namaj Times -->
+					<br>
 					<div class="cetagory-title-03">
 						@if(session()->get('lang') == 'english')
 					     Prayer Time
@@ -941,18 +991,8 @@
 					    @endif
 					</table>
 					<!-- Namaj Times -->
-					<div class="cetagory-title-03">পুরানো সংবাদ  </div>
-					<form action="" method="post">
-						<div class="old-news-date">
-						   <input type="text" name="from" placeholder="From Date" required="">
-						   <input type="text" name="" placeholder="To Date">			
-						</div>
-						<div class="old-date-button">
-							<input type="submit" value="খুজুন ">
-						</div>
-				   </form>
 				   <!-- news -->
-				   <br><br><br><br><br>
+				   <br><br>
 				   <div class="cetagory-title-04">
 					@if(session()->get('lang') == 'english')
 					   Important Website

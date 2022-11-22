@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Ads;
 use App\Models\Category;
 use App\Models\LiveTv;
 use App\Models\Namaz;
@@ -44,7 +45,11 @@ class AppServiceProvider extends ServiceProvider
             View::share('headlines', News::latest()->where('headline', 1)->get());
             View::share('latest', News::latest()->active()->take(7)->get());
             View::share('favourite', News::inRandomOrder()->active()->limit(7)->get());
-            View::share('special', News::latest()->active()->take(7)->get());  
+            View::share('special', News::latest()->active()->take(7)->get()); 
+            View::share('special', News::latest()->active()->take(7)->get()); 
+            View::share('special', News::latest()->active()->take(7)->get()); 
+            View::share('vartical1', Ads::where('type',1)->first()); 
+            View::share('vartical2', Ads::where('type',1)->skip(1)->first()); 
         });
 
         Paginator::useBootstrap();

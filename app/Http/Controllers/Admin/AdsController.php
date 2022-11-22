@@ -181,8 +181,6 @@ class AdsController extends Controller
                 } 
                 $ads->delete();
             }
-
-            $ads->save();
             return response()->json([
                 'success' =>true,
                 'message' => "Ads delete successfully"

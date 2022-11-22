@@ -140,8 +140,18 @@
   <section>
     <div class="container-fluid">
         <div class="row">
+            @php
+                $horizotal1 = DB::table('ads')->where('type',2)->first();
+            @endphp
             <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
-                <div class="top-add"><img src="{{asset("/frontend/assets/img/top-ad.jpg")}}" alt="" /></div>
+                <div class="top-add">
+                    @if($horizotal1 == NULL)
+                    @else
+                     <a target="_blank" href="{{ $horizotal1->links }}">
+                        <img style="width: 970px; height:90px" src="{{asset('storage/horizotal_images/'.$horizotal1->ads)}}" alt="" />
+                     </a>
+                    @endif 
+                </div>
             </div>
         </div>
     </div>

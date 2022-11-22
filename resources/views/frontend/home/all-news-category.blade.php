@@ -88,9 +88,17 @@
             <!-- add-start -->	
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
-                        <div class="sidebar-add"><img src="{{asset("frontend/assets/img/add_01.jpg")}}" alt="" /></div>
+                        <div class="sidebar-add">
+                            @if($vartical1 == NULL)
+                            @else
+                             <a target="_blank" href="{{ $vartical1->links }}">
+                                <img  src="{{asset('storage/vartical_images/'.$vartical1->ads)}}" alt="" />
+                             </a>
+                            @endif
+                        </div>
                     </div>
                 </div><!-- /.add-close -->
+                <br>
             <div class="tab-header">
                 <!-- Nav tabs -->
                 <!-- Nav tabs -->
@@ -182,9 +190,17 @@
 					</div>
             </div>
             <!-- add-start -->	
+            <br>
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
-                        <div class="sidebar-add"><img src="{{asset("frontend/assets/img/add_01.jpg")}}" alt="" /></div>
+                        <div class="sidebar-add">
+                            @if($vartical2 == NULL)
+							@else
+								<a target="_blank" href="{{ $vartical2->links }}">
+									<img  src="{{asset('storage/vartical_images/'.$vartical2->ads)}}" alt="" />
+								</a>
+							@endif
+                        </div>
                     </div>
                 </div><!-- /.add-close -->
         </div>
