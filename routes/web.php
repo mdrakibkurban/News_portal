@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdsController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DistrictController;
@@ -123,6 +124,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
     Route::resource('/vedios',VedioGalleryController::class);
     Route::post('/vedio/remove/items',[VedioGalleryController::class,'vedioRemoveItems'])
     ->name('vedio.remove.items');
+
+    // Ads route
+    Route::resource('/ads',AdsController::class);
+    Route::post('/ads/remove/items',[VedioGalleryController::class,'AdsRemoveItems'])
+    ->name('ads.remove.items');
 
 });
 require __DIR__.'/auth.php';
