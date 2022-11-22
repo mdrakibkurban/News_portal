@@ -20,7 +20,6 @@
         <div class="card">
             <div class="card-header">
               <h3 class="card-title mt-2">Manage Ads</h3>
-              <button class="btn btn-danger ml-3" id="deleteItems">Delete All</button>
               <div class="card-tools">
                   <a href="{{ route('admin.ads.create')}}" class="btn btn-primary">Add Ads</a>
               </div>
