@@ -19,7 +19,6 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             SubCategorySeeder::class,
             DivisionSeeder::class,
-            DistrictSeeder::class,
             SocialSeeder::class,
             SeoSeeder::class,
             NamazSeeder::class,

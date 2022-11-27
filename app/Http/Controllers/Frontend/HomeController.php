@@ -93,7 +93,6 @@ class HomeController extends Controller
 
         $data['vediogGalleryBig'] = VideoGallery::where('type',1)->latest()->first();
         $data['vediogGallerySmall'] = VideoGallery::where('type',0)->latest()->get();
-
         $data['latest'] = News::latest()->active()->take(7)->get();
         $data['favourite'] = News::inRandomOrder()->active()->limit(7)->get();
         $data['special'] = News::latest()->active()->take(7)->get();

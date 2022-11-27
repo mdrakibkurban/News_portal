@@ -193,6 +193,25 @@
               </li>
             </ul>
           </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                User Role
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="fas fa-list nav-icon"></i>
+                  <p>Writer</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
         </ul>
       </nav>
       

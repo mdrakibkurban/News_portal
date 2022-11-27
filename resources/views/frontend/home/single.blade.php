@@ -156,7 +156,7 @@
 				<!-- ********* -->
                 <div class="fb-comments" data-href="{{ Request::url() }}" data-width="" data-numposts="5"></div>
 				<div class="row">
-                    @if($moreNewsFirst->count() > 0 && $moreNewsSecond->count() > 0)
+                    @if($moreNewsFirst && $moreNewsSecond)
 					<div class="col-md-12">
                         <hr style="border: 1px solid gray">
                         <h2 class="heading">

@@ -206,7 +206,7 @@
         
                            <div class="custom-control custom-checkbox">
                             <input class="custom-control-input" type="checkbox" id="first_section_small"  name="first_section_small" value="1" {{ $news->first_section_small == 1 ? 'checked' : ''}}>
-                            <label for="first_section_small" class="custom-control-label">First Section</label>
+                            <label for="first_section_small" class="custom-control-label">First Section Small</label>
                            </div>
                       </div>
 

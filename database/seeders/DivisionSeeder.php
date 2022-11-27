@@ -3,8 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Division;
-use Faker\Factory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DivisionSeeder extends Seeder
@@ -16,14 +14,30 @@ class DivisionSeeder extends Seeder
      */
     public function run()
     {
-        $facker = Factory::create();
-
-        foreach (range(1,8) as $item) {
+       
             Division::create([
-                'name_en' => $facker->unique()->name,
-                'name_bn' => $facker->unique()->name,
+                'name_en' => 'Dhaka',
+                'name_bn' => 'ঢাকা',
                 'user_id' =>1,
             ]);
-        }
+            
+            Division::create([
+                'name_en' => 'Mymensingh',
+                'name_bn' => 'ময়মনসিংহঃ',
+                'user_id' =>1,
+            ]);
+
+            Division::create([
+                'name_en' => 'Khulna',
+                'name_bn' => 'খুলনা',
+                'user_id' =>1,
+            ]);
+            
+            Division::create([
+                'name_en' => 'Rangpur',
+                'name_bn' => 'রংপুর',
+                'user_id' =>1,
+            ]); 
+
     }
 }
