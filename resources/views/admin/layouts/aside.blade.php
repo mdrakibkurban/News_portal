@@ -22,6 +22,8 @@
               </p>
             </a>
           </li>
+
+          @if(Auth::user()->category == 1)
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
@@ -47,8 +49,9 @@
              
             </ul>
           </li>
+           @endif
 
-
+          @if(Auth::user()->division == 1)
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
@@ -71,11 +74,11 @@
                   <p>District</p>
                 </a>
               </li>
-             
             </ul>
           </li>
+          @endif
 
-
+          @if(Auth::user()->news == 1)
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
@@ -93,8 +96,9 @@
               </li>
             </ul>
           </li>
+          @endif
 
-
+          @if(Auth::user()->setting == 1)
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="fa fa-cog nav-icon"></i>
@@ -147,8 +151,9 @@
               </li>
             </ul>
           </li>
+          @endif
 
-
+          @if(Auth::user()->gallery == 1)
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
@@ -174,8 +179,9 @@
               </li>
             </ul>
           </li>
+          @endif
 
-
+          @if(Auth::user()->ads == 1)
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
@@ -193,7 +199,9 @@
               </li>
             </ul>
           </li>
+          @endif
 
+          @if(Auth::user()->role == 1)
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
@@ -204,14 +212,14 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{ route('admin.writers.index')}}" class="nav-link {{ request()->is('*/writers*') ? 'active' : ' '}}" class="nav-link">
                   <i class="fas fa-list nav-icon"></i>
                   <p>Writer</p>
                 </a>
               </li>
             </ul>
           </li>
-
+         @endif
         </ul>
       </nav>
       
