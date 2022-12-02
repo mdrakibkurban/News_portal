@@ -12,7 +12,9 @@ use App\Models\Division;
 use App\Models\News;
 use App\Models\SubCategory;
 use App\Models\SubDistrict;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller

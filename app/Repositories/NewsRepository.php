@@ -108,4 +108,6 @@ class NewsRepository extends BaseRepository implements INewsRepository
             Toastr::error('somthing worng', 'success', ["positionClass" => "toast-top-right",  "closeButton"=> true,   "progressBar"=> true,]);
         }
     }
+
+
 }

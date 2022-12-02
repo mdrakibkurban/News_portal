@@ -78,13 +78,9 @@
                      <tr>
                         <th style="width:200px">District</th>
                         <td>
-                            <span class="badge badge-secondary">
-                              {{ $news->district->name_en ?? '' }}
-                           </span>
+                           <span class="badge badge-secondary">{{ $news->district->name_en ?? '' }}</span>
                                    
-                            <span class="badge badge-secondary">
-                              {{ $news->district->name_bn ?? '' }}
-                           </span>
+                           <span class="badge badge-secondary">{{ $news->district->name_bn ?? '' }}</span>
                         </td>
                      </tr>
 

@@ -21,7 +21,10 @@
         <div class="card">
             <div class="card-header">
               <h3 class="card-title mt-2">Manage News</h3>
+              @if(Auth::user()->type != 1)
+              @else
               <button class="btn btn-danger ml-3" id="deleteNewsItems">Delete All</button>
+              @endif
               <div class="card-tools">
                   <a href="{{ route('admin.news.create') }}" class="btn btn-primary">Add News</a>
               </div>
@@ -30,9 +33,12 @@
                 <table class="table table-bordered" id="myTable">
                     <thead>
                       <tr>
+                        @if(Auth::user()->type != 1)
+                        @else
                         <th style="width: 10px">
                           <input type="checkbox" id="checkAll">
                         </th>
+                        @endif
                         <th style="width: 10px">#Id</th>
                         <th>Image</th>
                         <th>Created By</th>
@@ -46,9 +52,12 @@
                     <tbody>
                        @foreach($news as $row)
                            <tr id="ids{{$row->id}}">
-                             <td>
-                              <input type="checkbox" class="checkBox"  data-id="{{$row->id}}">
-                             </td>
+                              @if(Auth::user()->type != 1)
+                              @else
+                              <td>
+                                <input type="checkbox" class="checkBox"  data-id="{{$row->id}}">
+                              </td>
+                              @endif
                              <td>{{ $loop->iteration }}</td>
                              <td>
                               <img width="50" height="50" src="{{ asset('storage/news_images/'.$row->image) }}" alt="news">
@@ -56,20 +65,33 @@
                              <td>{{ $row->user->name }}</td>
                              <td>{{ Str::limit($row->news_bn, 15) }}</td>
                              <td>{!! Str::limit(strip_tags($row->des_bn), 20) !!}</td>
+                             @if(($row->user_id != Auth::id()) && Auth::user()->type != 1)
                              <td>
-                              <input type="checkbox" {{$row->status == 1 ? 'checked' : ''}} data-toggle="toggle" data-size="small" data-id="{{$row->id}}"
+                              <span class="badge badge-danger">Not authorized</span>
+                             </td>
+                             @else
+                             <td>
+                              <input type="checkbox" {{$row->status == 1 ? 'checked' : ''}} data-toggle="toggle" data-size="small" 
+                              data-id="{{$row->id}}"
                               data-width="85" data-on="Active" data-off="Inactive"
                               data-onstyle="success" data-offstyle="danger" id="newsStatus">
                              </td>
+                             @endif
+                            
                              <td>{{ $row->news_date }}</td>
-                             <td>
-                               <a title="Details" href="{{ route('admin.news.show',$row->id)}}" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></a>
+                             @if(($row->user_id != Auth::id()) && Auth::user()->type != 1)
+                              <td>
+                                <span class="btn btn-danger">Not authorized</span>
+                              </td>
+                              @else
+                              <td>
+                                <a title="Details" href="{{ route('admin.news.show',$row->id)}}" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></a>
 
-                               <a title="Edit" href="{{ route('admin.news.edit',$row->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-edit text-white"></i></a>
+                                <a title="Edit" href="{{ route('admin.news.edit',$row->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-edit text-white"></i></a>
 
-                               <button type="button" data-id="{{ $row->id }}" title="Delete" id="newsDelete" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
-
-                             </td>
+                                <button type="button" data-id="{{ $row->id }}" title="Delete" id="newsDelete" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                              </td>
+                             @endif
                            </tr>
                        @endforeach
                     </tbody>
