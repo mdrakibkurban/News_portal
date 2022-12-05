@@ -8,6 +8,7 @@ use App\Models\LiveTv;
 use App\Models\Namaz;
 use App\Models\News;
 use App\Models\Seo;
+use App\Models\Setting;
 use App\Models\Social;
 use App\Models\SubCategory;
 use App\Models\WebsiteLink;
@@ -50,6 +51,7 @@ class AppServiceProvider extends ServiceProvider
             View::share('special', News::latest()->active()->take(7)->get()); 
             View::share('vartical1', Ads::where('type',1)->first()); 
             View::share('vartical2', Ads::where('type',1)->skip(1)->first()); 
+            View::share('website', Setting::first()); 
         });
 
         Paginator::useBootstrap();

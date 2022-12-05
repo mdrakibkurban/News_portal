@@ -6,10 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\LiveTv;
 use App\Models\Namaz;
 use App\Models\Seo;
+use App\Models\Setting;
 use App\Models\Social;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class SettingController extends Controller
 {
@@ -99,5 +102,37 @@ class SettingController extends Controller
             'message' => "livetv status"
         ]); 
 
+    }
+
+    public function setting(){
+        $data['setting'] = Setting::first();
+        return view('admin.setting.setting',$data);
+    }
+
+    public function settingUpdate(Request $request, $id){
+        $setting             = Setting::find($id);
+        if($request->hasFile('logo')){
+            if ($setting->logo) {
+                Storage::delete('public/website_image/' . $setting ->image);
+            }
+            $logo = $request->file('logo');
+            $logo_ex =  $logo->getClientOriginalExtension();
+            $file_path = date('ymdhis').'.'.$logo_ex;
+            Image::make($logo)->resize(320, 130); 
+            $logo->storeAs('website_image', $file_path,'public');
+        }else{
+            $file_path = $setting->image;
+        }
+        $setting->email      = $request->email;
+        $setting->address_en = $request->address_en;
+        $setting->address_bn = $request->address_bn;
+        $setting->phone_en   = $request->phone_en;
+        $setting->phone_en   = $request->phone_en;
+        $setting->address_en = $request->address_en;
+        $setting-> copy_right = $request->copy_right;
+        $setting->logo       =  $file_path;
+        $setting->save();
+        Toastr::success('Setting update successfuly', 'success', ["positionClass" => "toast-top-right",  "closeButton"=> true,   "progressBar"=> true,]);
+        return redirect()->back();
     }
 }

@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
             SocialSeeder::class,
             SeoSeeder::class,
             NamazSeeder::class,
-            LiveTvSeeder::class
+            LiveTvSeeder::class,
+            SettingSeeder::class,
         ]);
     }
 }

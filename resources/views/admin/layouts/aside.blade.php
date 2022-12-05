@@ -108,6 +108,14 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+
+              <li class="nav-item">
+                <a href="{{ route('admin.setting')}}" class="nav-link {{ request()->is('*/setting*') ? 'active' : ' '}}">
+                  <i class="fa fa-cog nav-icon"></i>
+                  <p>Website Setting</p>
+                </a>
+              </li>
+
               <li class="nav-item">
                 <a href="{{ route('admin.social')}}" class="nav-link {{ request()->is('*/social*') ? 'active' : ' '}}">
                   <i class="fa fa-cog nav-icon"></i>

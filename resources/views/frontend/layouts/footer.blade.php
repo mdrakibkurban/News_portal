@@ -4,12 +4,8 @@
         <div class="top-footer">
             <div class="row">
                 <div class="col-md-3 col-sm-4">
-                    <div class="foot-logo"  style="margin-top: 15px;font-size:25px;">
-                        @if(session()->get('lang') == 'english')
-                        Daily News
-                        @else
-                        ডেইলি নিউস
-                        @endif
+                    <div class="foot-logo">
+                        <img style="height: 50px;" src="{{(!empty($website->logo)) ? asset('storage/website_image/'.$website->logo) : asset('/upload/website.jpg') }}"  alt="logo">
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-4">
@@ -42,17 +38,27 @@
         <div class="row">
             <div class="col-md-4 col-sm-4">
                 <div class="editor-one">
-                    Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is 
+                    @if(session()->get('lang') == 'english')
+                    Address : {{ $website->address_en }}
+                @else
+                    ঠিকানা : {{ $website->address_bn }} 
+                @endif
                 </div>
             </div>
             <div class="col-md-4 col-sm-4">
                 <div class="editor-two">
-                Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is 
+              
                 </div>
             </div>
             <div class="col-md-4 col-sm-4">
                 <div class="editor-three">
-                    Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is 
+                    @if(session()->get('lang') == 'english')
+						Email : {{ $website->email }} <br>
+                        Phone : {{ $website->phone_en }}
+					@else
+                         ইমেইল  : {{ $website->email }} <br>
+                         ফোন   : {{ $website->phone_bn }}
+					@endif
                 </div>
             </div>
         </div>
@@ -65,14 +71,30 @@
         <div class="row">
             <div class="col-md-6 col-sm-6">
                 <div class="copyright">						
-                    All rights reserved © 2020 LearnHunter
+                     {{ $website->copy_right }} <br>
                 </div>
             </div>
             <div class="col-md-6 col-sm-6">
                 <div class="btm-foot-menu">
                     <ul>
-                        <li><a href="#">About US</a></li>
-                        <li><a href="#">Contact US</a></li>
+                        <li>
+                            <a href="#">
+                            @if(session()->get('lang') == 'english')
+                              About US
+                            @else
+                            আমাদের সম্পর্কে
+                            @endif
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                @if(session()->get('lang') == 'english')
+                                 Contact US
+                                @else
+                                 যোগাযোগ করুন 
+                                @endif
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

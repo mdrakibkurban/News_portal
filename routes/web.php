@@ -82,6 +82,12 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
     //news route end
 
     // setting route
+
+    // Prayer time route
+    Route::get('/setting',[SettingController::class,'setting'])->name('setting');
+    Route::put('/setting/update/{id}',[SettingController::class,'settingUpdate'])
+    ->name('setting.update');
+
     // Social setting route
     Route::get('/social/setting',[SettingController::class,'socialSetting'])->name('social');
     Route::put('/social/setting/update/{id}',[SettingController::class,'socialSettingUpdate'])

@@ -31,14 +31,9 @@
     <div class="container-fluid">			
         <div class="row">
             <div class="col-xs-6 col-md-2 col-sm-4">
-                <div class="header_logo" style="margin-top: 15px;font-size:25px;">
+                <div class="header_logo">
                     <a href="{{ url('/') }}">
-                      @if(session()->get('lang') == 'english')
-                       Daily News
-                       @else
-                       ডেইলি নিউস
-                       @endif
-                         
+                        <img style="height: 50px;" src="{{(!empty($website->logo)) ? asset('storage/website_image/'.$website->logo) : asset('/upload/website.jpg') }}"  alt="logo">
                     </a> 
                 </div>
             </div>              
