@@ -141,5 +141,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
 
     Route::resource('writers',WriterController::class);
 
+    Route::get('profile',[SettingController::class,'profile'])->name('profile');
+    Route::put('profile/update',[SettingController::class,'updateProfile'])->name('profile.update');
+    Route::put('/password/update',[SettingController::class,'updatePassword'])
+    ->name('password.update');
+
 });
 require __DIR__.'/auth.php';

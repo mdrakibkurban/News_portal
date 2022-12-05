@@ -228,6 +228,15 @@
             </ul>
           </li>
          @endif
+
+         <li class="nav-item menu-open">
+          <a href="{{ route('admin.profile') }}" class="nav-link {{ request()->is('*/profile*') ? 'active' : ' '}}">
+            <i class="nav-icon fas fa-user"></i>
+            <p>
+              Profile
+            </p>
+          </a>
+        </li>
         </ul>
       </nav>
       

@@ -8,9 +8,11 @@ use App\Models\Namaz;
 use App\Models\Seo;
 use App\Models\Setting;
 use App\Models\Social;
+use App\Models\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -134,5 +136,58 @@ class SettingController extends Controller
         $setting->save();
         Toastr::success('Setting update successfuly', 'success', ["positionClass" => "toast-top-right",  "closeButton"=> true,   "progressBar"=> true,]);
         return redirect()->back();
+    }
+
+    public function profile(){
+        $data['user'] = Auth::user();
+        return view('admin.setting.profile',$data);
+    }
+
+    public function updateProfile(Request $request){
+       $user = User::findOrFail(Auth::id());
+        if($request->hasFile('image')){
+            if ($user->image) {
+                Storage::delete('public/user_images/' . $user->image);
+            }
+            $image = $request->file('image');
+            $image_ex =  $image->getClientOriginalExtension();
+            $file_path = date('ymdhis').'.'.$image_ex;
+            Image::make($image)->resize(500, 310); 
+            $image->storeAs('user_images', $file_path,'public');
+        }else{
+            $file_path = $user->image;
+        }
+        $user->name   = $request->name;
+        $user->email  = $request->email;
+        $user->image  =  $file_path;
+        $user->save();
+        Toastr::success('Profile Update successfuly', 'success', ["positionClass" => "toast-top-right",  "closeButton"=> true,   "progressBar"=> true,]);
+        return redirect()->back();
+    }
+
+    public function updatePassword(Request $request){
+        $request->validate([
+            'old_password'=>'required',
+            'password'=>'required|confirmed'
+         ]);
+
+         $oldPassword = Auth::user()->password;
+         if(Hash::check($request->old_password,$oldPassword)){
+            if(!Hash::check($request->password,$oldPassword)){
+                $user = User::find(Auth::id());
+                $user->password=Hash::make($request->password);
+                $user->save();
+                Toastr::success('Password Change Success', 'success', ["positionClass" => "toast-top-right",  "closeButton"=> true,   "progressBar"=> true,]);
+                Auth::logout();
+                return redirect()->back();
+            }else{
+                Toastr::error('New password and old password are same', 'success', ["positionClass" => "toast-top-right",  "closeButton"=> true,   "progressBar"=> true,]);
+                return redirect()->back();
+            }
+
+         }else{
+            Toastr::error('Current password is not match', 'success', ["positionClass" => "toast-top-right",  "closeButton"=> true,   "progressBar"=> true,]);
+            return redirect()->back();
+         }
     }
 }
